@@ -10,13 +10,14 @@ import java.util.*;
 
 public class ActivityEvent extends Event {
     //--------------------------Instance Variables---------------------
-    protected float fitnessLevel;       //Fitness level required for activity.
+    protected int fitnessLevel;       //Fitness level required for activity.
     
     //Constructor
     public ActivityEvent(String n, GregorianCalendar s, GregorianCalendar e,
-            float f)
+            int f)
     {
         super(n, s, e);
+        fitnessLevel = f;
     }
     
     //Returns the fitness level required for the activity.
