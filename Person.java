@@ -17,7 +17,7 @@ public class Person
   protected String name;
   protected int age;
   protected int fitLevel;
-  protected char gender;
+  protected String gender;
   protected int type;
   
   /**
@@ -25,14 +25,14 @@ public class Person
    *  Parameters are:
    *   name, age, gender, fitLevel
    */
-  public Person( String n, int a, char s, int f )
+  public Person( String n, int a, String s, int f )
   {
     name = n;
     if( a <= 0 )
       a = 1;
     age = a;
-    if( s != 'm' || s != 'f' )
-      s = 'm';
+    if( !s.equals( "m" ) && !s.equals( "f" ) )
+      s = "m";
     gender = s;
     if( f < 0 )
       f = 0;
@@ -61,7 +61,7 @@ public class Person
    * Accessor for gender field
    *  Return type: char
    */
-  public char getGender()
+  public String getGender()
   {
     return( gender );
   }

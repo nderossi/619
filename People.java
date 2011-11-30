@@ -62,14 +62,14 @@ public class People
     //   insert into others collection
     Collection col = others.values();
     Iterator   itr = col.iterator();
-    char gend = p.getGender();
+    String gend = p.getGender();
 
     while( itr.hasNext() )
     {
       Person tmp = ( Person )itr.next();
       if( tmp.getType() == 0 )
       {
-        if( tmp.getGender() == gend )
+        if( tmp.getGender().equals( gend ) )
         {
           others.remove( tmp.getName() );
           Double db = new Double( p, tmp );

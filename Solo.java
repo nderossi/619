@@ -16,7 +16,7 @@ public class Solo extends Person
    *  Parameters are:
    *   name, age, gender, fitLevel
    */
-  public Solo( String n, int a, char s, int f )
+  public Solo( String n, int a, String s, int f )
   {
     super( n, a, s, f );
     type = 0;

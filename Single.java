@@ -16,7 +16,7 @@ public class Single extends Person
    *  Parameters are:
    *   name, age, gender, fitLevel
    */
-  public Single( String n, int a, char s, int f )
+  public Single( String n, int a, String s, int f )
   {
     super( n, a, s, f );
     type = 1;

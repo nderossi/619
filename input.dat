@@ -1,0 +1,12 @@
+# defining travelers!
+person single Bill 23 m 4
+person solo Bob 22 m 3
+person single Jan 34 f 3
+person solo Anne 23 f 4
+person solo Jane 24 f 4
+# defining providers!
+provider lodging holidayInn durham 100 0800 2100
+provider travel busCo durham 100 0800 2100
+provider food young's durham 120 0800 1800
+provider food dunkinDonuts lee 100 0600 2200
+# end test
