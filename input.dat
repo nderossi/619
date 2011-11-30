@@ -9,4 +9,15 @@ provider lodging holidayInn durham 100 0800 2100
 provider travel busCo durham 100 0800 2100
 provider food young's durham 120 0800 1800
 provider food dunkinDonuts lee 100 0600 2200
+# not the end of the test
+tour McGill's AA Durham Lee 2 2 100
+1
+event travel bus Durham Dover 0800 0830
+event act dance 0845 0900 1
+event travel walk Dover Manchester 0901 1100
+event act run 1115 1145 1
+2
+event travel plane Manchester Dover 0800 0830
+event act golf 0845 0945 1
+event travel train Dover Durham 1000 1020
 # end test
