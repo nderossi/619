@@ -20,4 +20,14 @@ event act run 1115 1145 1
 event travel plane Manchester Dover 0800 0830
 event act golf 0845 0945 1
 event travel train Dover Durham 1000 1020
-# end test
+# test
+tour Tastey's BB Lee Durham 3 1 120
+1
+event travel bus Lee Dover 0800 0830
+event act dance 0850 0930 2
+event travel plane Dover Durham 1145 1215
+2
+event travel walk Durham Lee 0800 0830
+event act breakfast 0900 1100 2
+3
+event travel boat Lee Durham 0850 0900
