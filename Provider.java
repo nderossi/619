@@ -14,12 +14,16 @@ public class Provider {
     protected GregorianCalendar open;   //Time that the provider opens.
     protected GregorianCalendar close;  //Time that the provider closes.
     protected int capacity;             //Provider capacity.
+    protected String location;
+    protected String service;
     
     //Constructor
-    public Provider(String n, GregorianCalendar o, GregorianCalendar c,
+    public Provider(String n, String serv, String locale, GregorianCalendar o, GregorianCalendar c,
             int cap)
     {
         name = n;
+        location = locale;
+        service = serv;
         open = o;
         close = c;
         capacity = cap;
@@ -27,6 +31,12 @@ public class Provider {
     
     //Returns the provider name.
     public String getName() { return name; }
+
+    //Returns the service type of the provider
+    public String getService() { return service; }
+
+    //Returns the location of the provider
+    public String getLocation() { return location; }
     
     //Returns the opening time for the provider.
     public GregorianCalendar getOpenTime() { return open; }
@@ -41,8 +51,10 @@ public class Provider {
     public String toString()
     {
         String s = "";
-        s += "Name: " + name + " Open: " + open.get(Calendar.HOUR_OF_DAY) + ":" 
-                + open.get(Calendar.MINUTE) + " Close: " 
+        s += "Name: " + name + ", Place: " + location 
+                + ", Service: " + service + ", Open: "  
+                + open.get(Calendar.HOUR_OF_DAY) + ":" 
+                + open.get(Calendar.MINUTE) + ", Close: " 
                 + close.get(Calendar.HOUR_OF_DAY) + ":" 
                 + close.get(Calendar.MINUTE);
         return s;
