@@ -14,21 +14,23 @@ public class Reservation{
   
    //----------------instance variables--------------
    Offering offer;
-   String name;//***********CHANGE TO PERSON***************
+   Person p;
    
    
    //----------------constructor( Person, Offering )--------------
-   public Reservation( String n, Offering o ){ //include person later
+   public Reservation( Person per, Offering o ){ //include person later
       
       if( o == null )
          offer = new Offering(null, 0, 0, 0);
       else
          offer = o;
       
-      if( n == null )
-         name = "";
-      else
-         name = n;
+      // updated to Person object 11/29: nd
+      p = per;
+
+      // use PersonStrat here to check reservation
+      //  with the Person's collection to check for
+      //  conflictions
       
       offer.addReserv( this );
    }
@@ -36,7 +38,7 @@ public class Reservation{
    //--------------------Person getPerson()---------------------
    //***************CHANGE TO PERSON********************
    public String getPerson(){
-      return name;
+      return p;
    }
    
    //--------------------Offering getOffering()---------------------
@@ -54,7 +56,7 @@ public class Reservation{
    
    
    public String toString(){
-      return "Reservation of: " + offer + "For: " + name;
+      return "Reservation of: " + offer + "For: " + p.toString();
    }
    
 }
