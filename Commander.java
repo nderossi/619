@@ -137,11 +137,10 @@ public class Commander
     int hours = 0;
     int secs = 0;
     s.nextLine();
-    s.nextLine();
     t = new Tour( comp, id, startLoc, endLoc, cap, days, fit );
     for( int i = 0; i<days; i++ )
     {
-      while( s.next().equals( "event" ) )
+      while( s.hasNext() && s.next().equals( "event" ) )
       {
 
         String tmp = s.next();
