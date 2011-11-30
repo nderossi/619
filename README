@@ -1,0 +1,17 @@
+Current status of project:
+
+  command parsing for declaring travelers and providers
+   currently just placed into collections
+
+  need to rewrite schedule strategy logic since didn't come
+   anywhere near matching the code written.
+
+  Solo people of same gender are paired and become Double objects
+
+Need:
+
+  to define tours and events associated with the tour
+
+  define offerings
+
+  attempt level D scheduling just checking only time conflicts
