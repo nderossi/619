@@ -1,17 +1,60 @@
 Current status of project:
 
-  command parsing for declaring travelers and providers
-   currently just placed into collections
+  - Command parser not fully implemented
 
-  need to rewrite schedule strategy logic since didn't come
-   anywhere near matching the code written.
+    + currently only handles person, provider, tour,
+      and comment commands
+  
+  - Included input.dat is sample to show Tour creation
+     and Person and Provider declarations, no scheduling level
 
-  Solo people of same gender are paired and become Double objects
+  - Solos currently paired based only on gender
+    
+    + need to add fitLevel restriction checks
 
-Need:
+  - Event objects now hold the day # in tour to
+     simplify the Events collection class
 
-  to define tours and events associated with the tour
+  - Both ActivityEvent and TravelEvents are accurately
+     parsed and now form the correct types
 
-  define offerings
+  - Integration testing for classes has concluded for the
+     most part currently, working out logic and design issues
+     brought to light by the intgration testing and necessary
+     implementation deviations
+ 
+To Be Implemented:
 
-  attempt level D scheduling just checking only time conflicts
+  - Re-working of Schedule strategy logic to improve to Level
+     D scheduling by end of day Friday.
+
+  - Finish command interpreter and supply a more complete input
+     data set for the parser
+
+  - Fix StrategyIF instance locations to fix design issue among
+     PersonStrat and ProviderStrat
+
+  - Reconsider placement of Offerings collection in Event object
+
+  - Design clean error output method for displaying reasonings
+     of non-scheduling
+
+  - Reconsider the way that the Providers collection is ordered
+     currently based on name, possible consider based off of service
+     or location to ease the process of checking that a Provider
+     of a specific service at a specific location is defined for
+     each event in a tour
+
+Progress Monitor:
+
+  Currently we are pretty close to being on track with the time frame
+ that we had set in our implementation plan.  Besides the numerous
+ unforseen bugs and design issues we seem to have kept a rather effective
+ pace, and will hopefully continue through the last week before our final
+ meeting.  By the end of the day Friday we plan on having Level D logic
+ implemented and will then spend the rest of the weekend improving the
+ logic until ideally Level A scheduling is achieved.  I believe that we
+ are starting with a pretty solid code base with the current state of the
+ project and have hopefully already encountered any major design flaws
+ that we will for the remainder of the project, therefore keeping us on
+ track with our implementation plan.
