@@ -14,8 +14,9 @@ public class Tour{ //implements TourStrat
    
    //----------------instance variables--------------
    //Event Collection for each day
-   //Start Place;
-   //End Place;
+   private Events acts;
+   private String startPlace;
+   private String endPlace;
    private Offerings offers;
    private int maxTravelers;
    private int days;
@@ -26,7 +27,7 @@ public class Tour{ //implements TourStrat
    
    //--------------------constructor(String)-----------------
    //set company name to passed String, other data set to 0
-   public Tour( String comp, String s ){
+   public Tour( String comp, String s, String st, String en ){
       
       if( comp == null )
          company = "";
@@ -41,13 +42,16 @@ public class Tour{ //implements TourStrat
       maxTravelers = 0;
       days = 0;
       fitRating = 0;
+      startPlace = st;
+      endPlace = en;
       
       offers = new Offerings();
+      acts = new Events();
    }
    
    //--------------------constructor(String, int, int, int)-----------------
    //set all data
-   public Tour( String comp, String s, int t, int d, int fit ){
+   public Tour( String comp, String s, String st, String en, int t, int d, int fit ){
       
       if( comp == null )
          company = "";
@@ -62,9 +66,11 @@ public class Tour{ //implements TourStrat
       maxTravelers = t;
       days = d;
       fitRating = fit;
+      startPlace = st;
+      endPlace = en;
       
       offers = new Offerings();
-      
+      acts = new Events();
    }
    
    
@@ -114,6 +120,16 @@ public class Tour{ //implements TourStrat
          offers.remove( year, month, day );
       }
    }
+
+   /**
+    * Added: 11/29
+    * Method to add Event to collection
+    */
+   public void addEvent( Event e )
+   {
+     if( e != null )
+       acts.addEvent( e );
+   }
    
    //---------------------setMax(int)------------------
    public void setMax( int max ){
@@ -139,6 +155,8 @@ public class Tour{ //implements TourStrat
       s += fitnessReq() + "\tMaximum Capacity: " + maxTravelers();
       
       s += "\nOfferings: " + offers.toString();
+
+      s += "\nEvents: " + acts.toString();
       
       return s;
    }

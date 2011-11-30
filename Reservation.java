@@ -36,8 +36,7 @@ public class Reservation{
    }
    
    //--------------------Person getPerson()---------------------
-   //***************CHANGE TO PERSON********************
-   public String getPerson(){
+   public Person getPerson(){
       return p;
    }
    
@@ -48,9 +47,9 @@ public class Reservation{
    
    //--------------------------cancel()-----------------------------
    //cancel this reservation with the offering
-   //*****************CANCEL WITH PERSON*********************
    public void cancel(){
       offer.removeReserv( this );
+      //cancel for all person stuff too
    }
    
    

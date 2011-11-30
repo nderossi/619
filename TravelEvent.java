@@ -14,9 +14,9 @@ public class TravelEvent extends Event{
     
     //Constructor
     public TravelEvent(String n, String st, String d, GregorianCalendar s,
-           GregorianCalendar e )
+           GregorianCalendar e, int day )
     {
-        super(n, s, e);
+        super(n, day, s, e);
         destination = d;
         startLocation = st;
     }
@@ -31,7 +31,8 @@ public class TravelEvent extends Event{
     public String toString()
     {
         String s ="";
-        s += name + " from " + startLocation + " to " + destination + " " 
+        s += "Day #" + dayOfTour + " " + name + " from " 
+                + startLocation + " to " + destination + " " 
                 + startTime.get(Calendar.HOUR_OF_DAY) + ":" 
                 + startTime.get(Calendar.MINUTE) + " to "
                 + endTime.get(Calendar.HOUR_OF_DAY) + ":" 

@@ -45,5 +45,4 @@ public class Tours extends ArrayList<Tour>{
 
    }
    
-   
 }

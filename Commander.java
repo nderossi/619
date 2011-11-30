@@ -19,6 +19,7 @@ public class Commander
   private Scanner s = null;
   private People pers;
   private Providers ps;
+  private Tours ts;
 
   /**
    * Constructor for the command processor
@@ -29,6 +30,7 @@ public class Commander
     s = sc;
     pers = new People();
     ps = new Providers();
+    ts = new Tours();
   }
 
   /**
@@ -45,6 +47,8 @@ public class Commander
         definePerson();
       else if( input.equals( "provider" ) )
         defineProvider();
+      else if( input.equals( "tour" ) )
+        defineTour();
       else if( input.equals( "#" ) )
         System.out.println( "#" + s.nextLine() );
       else
@@ -54,6 +58,8 @@ public class Commander
     System.out.println( pers.toString() );
     System.out.println( "Providers:\n---------------" );
     System.out.println( ps.toString() );
+    System.out.println( "Tours:\n---------------" );
+    System.out.println( ts.toString() );
   }
 
   /**
@@ -102,13 +108,86 @@ public class Commander
     int secs = opTime%100;
     opTime = opTime/100;
     int hours = opTime%100;
-    GregorianCalendar op = new GregorianCalendar( 2011, 11, 29, hours, secs );
+    GregorianCalendar op = new GregorianCalendar( 2011, 11, 10, hours, secs );
     secs = clTime%100;
     clTime = clTime/100;
     hours = clTime%100;
-    GregorianCalendar cl = new GregorianCalendar( 2011, 11, 29, hours, secs );
-    Provider p = new Provider( name, op, cl, cap ); // need to add location
+    GregorianCalendar cl = new GregorianCalendar( 2011, 11, 10, hours, secs );
+    Provider p = new Provider( name, serv, location, op, cl, cap );
     ps.addProvider( p );
+  }
+
+  /**
+   * Method to handle the parsing and
+   *  declaration of a Tour object
+   */
+  public void defineTour()
+  {
+    Tour t = null;
+    Event e = null;
+    String comp = s.next();
+    String id = s.next();
+    String startLoc = s.next();
+    String endLoc = s.next();
+    int days = s.nextInt();
+    int fit = s.nextInt();
+    int cap = s.nextInt();
+    int sT = 0;
+    int eT = 0;
+    int hours = 0;
+    int secs = 0;
+    s.nextLine();
+    s.nextLine();
+    t = new Tour( comp, id, startLoc, endLoc, cap, days, fit );
+    for( int i = 0; i<days; i++ )
+    {
+      while( s.next().equals( "event" ) )
+      {
+
+        String tmp = s.next();
+
+        if( tmp.equals( "travel" ) )
+        {
+          String mode = s.next();
+          startLoc = s.next();
+          endLoc = s.next();
+          sT = s.nextInt();
+          eT = s.nextInt();
+          secs = sT%100;
+          sT = sT/100;
+          hours = sT%100;
+          GregorianCalendar s = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
+          secs = eT%100;
+          eT = eT/100;
+          hours = eT%100;
+          GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
+          e = new TravelEvent( mode, startLoc, endLoc, s, end, i+1 );
+        }
+        else
+        {
+          String act = s.next();
+          sT = s.nextInt();
+          eT = s.nextInt();
+          fit = s.nextInt();
+          secs = sT%100;
+          sT = sT/100;
+          hours = sT%100;
+          sT = sT/100;
+          GregorianCalendar s = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
+          secs = eT%100;
+          eT = eT/100;
+          hours = eT%100;
+          GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
+          e = new ActivityEvent( act, s, end, fit, i+1 );
+        }
+
+        t.addEvent( e );
+        s.nextLine();
+
+      }
+      s.nextLine();
+    }
+    ts.add( t );
   }
 
 }

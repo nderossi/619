@@ -15,12 +15,14 @@ public class Event{
     protected GregorianCalendar startTime;  //Start time for the event.
     protected GregorianCalendar endTime;    //End time for the event.
     protected Providers providers;          //Collection providers that offer 
-                                            //the event.
+    protected int dayOfTour;                                        //the event.
+
     
     //Constructor
-    public Event(String n, GregorianCalendar s, GregorianCalendar e)
+    public Event(String n, int d, GregorianCalendar s, GregorianCalendar e)
     {
         name = n;
+        dayOfTour = d;
         startTime = s;
         endTime = e;
         providers = new Providers();
@@ -28,6 +30,9 @@ public class Event{
     
     //Returns the name of the event.
     public String getName() { return name; }
+
+    //Returns the number day of tour the even is scheduled for
+    public int getDay() { return dayOfTour; }
     
     //Returns the start time of the event in GregorianCalendar form.
     public GregorianCalendar getStartTime() { return startTime; }
@@ -70,7 +75,8 @@ public class Event{
     public String toString()
     {
         String s = "";
-        s += name + " from " + + startTime.get(Calendar.HOUR_OF_DAY) + ":" 
+        s += "Day #" + dayOfTour + " " + name + " from " 
+                + startTime.get(Calendar.HOUR_OF_DAY) + ":" 
                 + startTime.get(Calendar.MINUTE) + " to "
                 + endTime.get(Calendar.HOUR_OF_DAY) + ":" 
                 + endTime.get(Calendar.MINUTE);

@@ -27,7 +27,7 @@ public class Offering{
    public Offering( Tour t, int y, int m, int d){
       
       if( t == null )
-         tour = new Tour( "", "");
+         tour = new Tour( "", "", "", "" );
       else
          tour = t;
       
