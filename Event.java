@@ -2,6 +2,7 @@
  * Event.java
  * Author: Nick Grauel
  * Group: Nick Grauel, Tyler Janowski, Nick DeRossi
+ * LAST UPDATED 12/1
  * This class represents a generic event.  It is the basis for the ActivityEvent
  * and TravelEvent subclasses.
  */
@@ -19,13 +20,28 @@ public class Event{
 
     
     //Constructor
-    public Event(String n, int d, GregorianCalendar s, GregorianCalendar e)
+    public Event(String n, int d, GregorianCalendar s, GregorianCalendar e, 
+            Providers provs, String serv)
     {
         name = n;
         dayOfTour = d;
         startTime = s;
         endTime = e;
         providers = new Providers();
+        for(int x = 0; x < provs.size(); x++)
+        {
+            Date eOpen = startTime.getTime();
+            Date eClose = endTime.getTime();
+            GregorianCalendar open = provs.get(x).getOpenTime();
+            GregorianCalendar close = provs.get(x).getClosingTime();
+            Date o = open.getTime();
+            Date c = close.getTime();
+            if(o.compareTo(eOpen) <= 0 && c.compareTo(eClose) >= 0)
+            {
+                if(provs.get(x).getService().equals(serv))
+                    addProvider(provs.get(x));
+            }
+        }
     }
     
     //Returns the name of the event.
@@ -40,7 +56,7 @@ public class Event{
     public GregorianCalendar getEndTime() { return endTime; }
     
     //Adds a provider to the collection of providers.
-    public void addProvider(Provider p) { providers.addProvider(p); }
+    public void addProvider(Provider p) { providers.add(p); }
     
     //Finds a provider in the collection by name.  Returns null if not found.
     public Provider getProvider(String name) { return providers.find(name); }
