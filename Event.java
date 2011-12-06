@@ -15,22 +15,26 @@ public class Event{
     protected String name;                  //Event name.
     protected GregorianCalendar startTime;  //Start time for the event.
     protected GregorianCalendar endTime;    //End time for the event.
-    protected Providers providers;          //Collection providers that offer 
-    protected int dayOfTour;                                        //the event.
-    protected boolean hasProviders;         //True if there are providers for 
-                                                                    //this event.
+    protected Providers availableProviders; //Collection providers that offer 
+                                                                    //the event.
+    protected Providers usedProviders;      //Provider(s) being used for the event.
+    protected int dayOfTour;                //The day of the event.
+    protected boolean hasProvider;         //True if there are providers being 
+                                                             //used for this event.
     
     //Constructor
     public Event(String n, int d, GregorianCalendar s, GregorianCalendar e, 
             Providers provs, String serv)
     {
-	hasProviders = false;
+	hasProvider = false;
         name = n;
         dayOfTour = d;
         startTime = s;
         endTime = e;
-        providers = new Providers();
-        for(int x = 0; x < provs.size(); x++)
+        availableProviders = new Providers();
+        usedProviders = new Providers();
+
+	for(int x = 0; x < provs.size(); x++)
         {
             Date eOpen = startTime.getTime();
             Date eClose = endTime.getTime();
@@ -42,13 +46,52 @@ public class Event{
             {
                 if(provs.get(x).getService().equals(serv))
 		{
-                    addProvider(provs.get(x));
-		    hasProviders = true;
+                    boolean done = false;
+		    for(int y = 0; y < availableProviders.size(); y++)
+		    {
+			if(availableProviders.get(y).getCapacity() < provs.get(x).getCapacity())
+			{
+			    availableProviders.add(provs.get(x), y);
+			    done = true;
+			}
+		    }
+		    if(done == false)
+			availableProviders.add(provs.get(x)); 
                 }
             }
         }
     }
     
+    //Updates the providers being used based on the current capacity.
+    public int updateProviders(int curCap)
+    {
+	usedProviders.clear();
+	hasProvider = false;
+	Providers p = availableProviders;
+	if(p.size() > 0)
+	{
+	    if(p.get(0).getCapacity() > curCap)
+		usedProviders.add(p.get(0));
+	
+	    else{
+		for(int x = 1; x < availableProviders.size(); x++)
+		{
+		    int totalCap = 0;
+		    for(int y = 0; y <= x; y++)
+		    {
+			totalCap += p.get(y).getCapacity();
+		    }
+		    if(totalCap > curCap)
+		    {
+			for(int y = 0; y <= x; y++)
+			    usedProviders.add(p.get(y);
+			hasProvider = true;	
+		    }
+		}	  
+	    } 
+	}
+    }
+
     //Returns the name of the event.
     public String getName() { return name; }
 
@@ -68,7 +111,7 @@ public class Event{
     public Provider getProvider(String name) { return providers.find(name); }
     
     //Returns true if the event has providers for it.  Returns false otherwise.
-    public boolean hasProviders() { return hasProviders; }
+    public boolean hasProvider() { return hasProvider; }
 
     //Returns true if this event occurs at the same time as a given event.
     public boolean isConflicting(Event e)
