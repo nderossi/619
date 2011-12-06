@@ -105,6 +105,10 @@ public class Tour{ //implements TourStrat
       return fitRating;
    }
    
+   public Events getEvents(){
+	   return acts;
+   }
+   
    //---------------------addOffering(int, int, int)------------------
    //adds an offering to the collection
    public void addOffering( int year, int month, int day ){

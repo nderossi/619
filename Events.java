@@ -32,6 +32,13 @@ public class Events extends ArrayList<Event>{
 	return null;
     }
     
+    //Updates the providers used for all events based on the current capacity.
+    public void updateEventProviders(int curCap)
+    {
+	for(int x = 0; x < size(); x++)
+	    updateProviders(curCap);
+    }
+
     //Returns the list of all events in the collection.
     public String toString()
     {
