@@ -49,6 +49,8 @@ public class Commander
         defineProvider();
       else if( input.equals( "tour" ) )
         defineTour();
+      else if( input.equals( "offering" ) )
+        defineOffer();
       else if( input.equals( "#" ) )
         System.out.println( "#" + s.nextLine() );
       else
@@ -160,7 +162,8 @@ public class Commander
           eT = eT/100;
           hours = eT%100;
           GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
-          e = new TravelEvent( mode, startLoc, endLoc, s, end, i+1 );
+          e = new TravelEvent( mode, startLoc, endLoc, s, end, i+1, ps, mode );
+          //add providers to event on creation
         }
         else
         {
@@ -177,7 +180,8 @@ public class Commander
           eT = eT/100;
           hours = eT%100;
           GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
-          e = new ActivityEvent( act, s, end, fit, i+1 );
+          e = new ActivityEvent( act, s, end, fit, i+1, ps, act );
+          //add providers to event on creation
         }
 
         t.addEvent( e );
@@ -187,6 +191,25 @@ public class Commander
       s.nextLine();
     }
     ts.add( t );
+  }
+
+  /**
+   * This method is used to parse and correctly
+   *  create, schedule, and store a tour offering.
+   */
+  private void defineOffer()
+  {
+    System.err.println( "OFFERING!" );
+    String tourId = s.next();
+    int sDate = s.nextInt();
+    int year = sDate%10000;
+    sDate = sDate/10000;
+    int day = sDate%100;
+    sDate = sDate/100;
+    int month = sDate%100;
+    // System.err.println( "TourID = " + tourId + ", y = " + year + ", m = " + month + ", d = " + day );
+    
+    s.nextLine();
   }
 
 }
