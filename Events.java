@@ -36,7 +36,7 @@ public class Events extends ArrayList<Event>{
     public void updateEventProviders(int curCap)
     {
 	for(int x = 0; x < size(); x++)
-	    updateProviders(curCap);
+	    get(x).updateProviders(curCap);
     }
 
     //Returns the list of all events in the collection.

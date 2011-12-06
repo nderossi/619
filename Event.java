@@ -51,7 +51,7 @@ public class Event{
 		    {
 			if(availableProviders.get(y).getCapacity() < provs.get(x).getCapacity())
 			{
-			    availableProviders.add(provs.get(x), y);
+			    availableProviders.add(y, provs.get(x));
 			    done = true;
 			}
 		    }
@@ -63,7 +63,7 @@ public class Event{
     }
     
     //Updates the providers being used based on the current capacity.
-    public int updateProviders(int curCap)
+    public void updateProviders(int curCap)
     {
 	usedProviders.clear();
 	hasProvider = false;
@@ -84,7 +84,7 @@ public class Event{
 		    if(totalCap > curCap)
 		    {
 			for(int y = 0; y <= x; y++)
-			    usedProviders.add(p.get(y);
+			    usedProviders.add(p.get(y));
 			hasProvider = true;	
 		    }
 		}	  
@@ -105,7 +105,7 @@ public class Event{
     public GregorianCalendar getEndTime() { return endTime; }
     
     //Adds a provider to the collection of providers.
-    public void addProvider(Provider p) { providers.add(p); }
+    public void addProvider(Provider p) { availableProviders.add(p); }
 
     //Returns the provider(s) being used by this event.
     public Providers getUsedProviders() { return usedProviders; }
