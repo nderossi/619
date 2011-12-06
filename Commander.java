@@ -20,6 +20,7 @@ public class Commander
   private People pers;
   private Providers ps;
   private Tours ts;
+  private Offerings os;
 
   /**
    * Constructor for the command processor
@@ -31,6 +32,7 @@ public class Commander
     pers = new People();
     ps = new Providers();
     ts = new Tours();
+    os = new Offerings();
   }
 
   /**
@@ -51,6 +53,8 @@ public class Commander
         defineTour();
       else if( input.equals( "offering" ) )
         defineOffer();
+      else if( input.equals( "reservation" ) )
+        defineReserv();
       else if( input.equals( "#" ) )
         System.out.println( "#" + s.nextLine() );
       else
@@ -60,8 +64,10 @@ public class Commander
     System.out.println( pers.toString() );
     System.out.println( "Providers:\n---------------" );
     System.out.println( ps.toString() );
-    System.out.println( "Tours:\n---------------" );
+    System.out.println( "\nTours:\n---------------" );
     System.out.println( ts.toString() );
+    System.out.println( "\nOfferings:\n---------------" );
+    System.out.println( os.toString() );
   }
 
   /**
@@ -116,7 +122,7 @@ public class Commander
     hours = clTime%100;
     GregorianCalendar cl = new GregorianCalendar( 2011, 11, 10, hours, secs );
     Provider p = new Provider( name, serv, location, op, cl, cap );
-    ps.addProvider( p );
+    ps.add( p );
   }
 
   /**
@@ -184,7 +190,10 @@ public class Commander
           //add providers to event on creation
         }
 
-        t.addEvent( e );
+        if( t.addEvent( e ) )
+          System.err.println( "event Does not conflict!" );
+        else
+          System.err.println( "event Does conflict" );
         s.nextLine();
 
       }
@@ -207,8 +216,54 @@ public class Commander
     int day = sDate%100;
     sDate = sDate/100;
     int month = sDate%100;
-    // System.err.println( "TourID = " + tourId + ", y = " + year + ", m = " + month + ", d = " + day );
-    
+    Tour t = ts.get( tourId );
+    if( t != null )
+    {
+      Offering o = new Offering( t, year, month, day );
+      os.add( o );
+      t.addOffering( year, month, day );
+    }
+    else
+      System.err.println( "Tour " + tourId + " has not been defined!" );
+    s.nextLine();
+  }
+
+  /**
+   * This method is used to parse and correctly
+   *  create, schedule, and store a reservation.
+   */
+  private void defineReserv()
+  {
+    System.err.println( "RESERVATION!" );
+    String persName = s.next();
+    String tourId = s.next();
+    int sDate = s.nextInt();
+    int year = sDate%10000;
+    sDate = sDate/10000;
+    int day = sDate%100;
+    sDate = sDate/100;
+    int mon = sDate%100;
+    Person p1 = pers.findPerson( persName );
+    if( p1 != null )
+    {
+      Tour t1 = ts.get( tourId );
+      if( t1 != null )
+      {
+        Offering of = t1.findOffering( year, mon, day );
+        if( of != null )
+        {
+          Reservation r = new Reservation( p1, of );
+          if( p1.addReserv( r ) )
+            System.err.println( "Successfully added reservation!" );
+          else
+            System.err.println( "Confliction error with current reservations!" );
+        }
+      }
+      else
+        System.err.println( "Tour " + tourId + " has not been defined!" );
+    }
+    else
+      System.err.println( "Person " + persName + " has not been defined!" );
     s.nextLine();
   }
 

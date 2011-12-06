@@ -14,7 +14,7 @@ public class Events extends ArrayList<Event>{
     {
 	for(int x = 0; x < size(); x++)
 	{
-	    if(get(x).isConflict(e))
+	    if(get(x).isConflicting(e))
 		return false;
 	}
 	add(e);
