@@ -1,0 +1,64 @@
+
+
+DeRossi
+fix up toStrings
+	Tours
+	Offerings
+	Events
+	Providers
+	Reservation
+	Reservations
+
+Tyler
+Reservations
+	cancel needs to cancel for people as well
+	cancelling logic fix up
+
+DeRossi
+Tours
+	Make a tree
+
+
+Tyler 
+Offering
+	Add provider to events method
+Offerings
+	call above for all individual offerings method
+Providers Sched logic- if no conflicting offering add offering at date
+
+	1) added reserve	if events cant handle capacity put on hold
+		reservation has an on hold bool printed in toString
+		
+ 
+
+Talk About
+	2) Provider added in command, add provider to events in each individual offering, held offers pass current capacity to events, events check to see if with new provider can  schedule
+		if( 2) )
+			Offering no longer on hold
+
+
+DeRossi
+People Sched logic- 
+	CHECKS	
+		if no conflicting reservation
+		fit tour req (fitness level, not going over tour capacity, etc)		
+	add reservation to person 
+
+	********Need to overwrite the add method of reservations for confliction checking (boolean value) 
+
+
+Grauel
+for level C
+	Doubles can't split on providers
+	Offering needs to go through reservs and find number of doubles
+	additional arguement for number of doubles
+
+
+
+Input Order Heirarchy
+
+Providers
+Tours/Events
+Offerings
+People
+Reservations
