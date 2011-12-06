@@ -108,6 +108,7 @@ public class Person
     str += "Name = " + name + ", Age = ";
     str += age + ", Gender = " + gender;
     str += ", FitLevel = " + fitLevel;
+    str += "\nReservations:\n" + res.toString();
     return( str );
   }
 
