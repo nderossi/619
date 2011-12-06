@@ -53,6 +53,8 @@ public class Commander
         defineTour();
       else if( input.equals( "offering" ) )
         defineOffer();
+      else if( input.equals( "reservation" ) )
+        defineReserv();
       else if( input.equals( "#" ) )
         System.out.println( "#" + s.nextLine() );
       else
@@ -223,6 +225,45 @@ public class Commander
     }
     else
       System.err.println( "Tour " + tourId + " has not been defined!" );
+    s.nextLine();
+  }
+
+  /**
+   * This method is used to parse and correctly
+   *  create, schedule, and store a reservation.
+   */
+  private void defineReserv()
+  {
+    System.err.println( "RESERVATION!" );
+    String persName = s.next();
+    String tourId = s.next();
+    int sDate = s.nextInt();
+    int year = sDate%10000;
+    sDate = sDate/10000;
+    int day = sDate%100;
+    sDate = sDate/100;
+    int mon = sDate%100;
+    Person p1 = pers.findPerson( persName );
+    if( p1 != null )
+    {
+      Tour t1 = ts.get( tourId );
+      if( t1 != null )
+      {
+        Offering of = t1.findOffering( year, mon, day );
+        if( of != null )
+        {
+          Reservation r = new Reservation( p1, of );
+          if( p1.addReserv( r ) )
+            System.err.println( "Successfully added reservation!" );
+          else
+            System.err.println( "Confliction error with current reservations!" );
+        }
+      }
+      else
+        System.err.println( "Tour " + tourId + " has not been defined!" );
+    }
+    else
+      System.err.println( "Person " + persName + " has not been defined!" );
     s.nextLine();
   }
 
