@@ -17,12 +17,14 @@ public class Event{
     protected GregorianCalendar endTime;    //End time for the event.
     protected Providers providers;          //Collection providers that offer 
     protected int dayOfTour;                                        //the event.
-
+    protected boolean hasProviders;         //True if there are providers for 
+                                                                    //this event.
     
     //Constructor
     public Event(String n, int d, GregorianCalendar s, GregorianCalendar e, 
             Providers provs, String serv)
     {
+	hasProviders = false;
         name = n;
         dayOfTour = d;
         startTime = s;
@@ -39,7 +41,10 @@ public class Event{
             if(o.compareTo(eOpen) <= 0 && c.compareTo(eClose) >= 0)
             {
                 if(provs.get(x).getService().equals(serv))
+		{
                     addProvider(provs.get(x));
+		    hasProviders = true;
+                }
             }
         }
     }
@@ -52,6 +57,7 @@ public class Event{
     
     //Returns the start time of the event in GregorianCalendar form.
     public GregorianCalendar getStartTime() { return startTime; }
+
     //Returns the end time of the event in GregorianCalendar form.
     public GregorianCalendar getEndTime() { return endTime; }
     
@@ -61,6 +67,9 @@ public class Event{
     //Finds a provider in the collection by name.  Returns null if not found.
     public Provider getProvider(String name) { return providers.find(name); }
     
+    //Returns true if the event has providers for it.  Returns false otherwise.
+    public boolean hasProviders() { return hasProviders; }
+
     //Returns true if this event occurs at the same time as a given event.
     public boolean isConflicting(Event e)
     {
