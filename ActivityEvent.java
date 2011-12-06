@@ -2,6 +2,7 @@
  * ActivityEvent.java
  * Author: Nick Grauel
  * Group: Nick Grauel, Tyler Janowski, Nick DeRossi
+ * LAST UPDATED 12/1
  * This class represents an event that is an activity with a minimum required
  * fitness level.
  */
@@ -14,9 +15,9 @@ public class ActivityEvent extends Event {
     
     //Constructor
     public ActivityEvent(String n, GregorianCalendar s, GregorianCalendar e,
-            int f, int day )
+			 int f, int day, Providers provs, String serv )
     {
-        super(n, day, s, e);
+        super(n, day, s, e, provs, serv);
         fitnessLevel = f;
     }
     
