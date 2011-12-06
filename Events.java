@@ -7,38 +7,39 @@
 
 import java.util.*;
 
-public class Events extends TreeMap<String, Event>{
+public class Events extends ArrayList<Event>{
     
     //Adds an event to the collection.
     public boolean addEvent(Event e)
     {
-        if(!this.containsKey(e.getName()))
-        {
-            this.put(e.getName(), e);
-            return true;
-        }
-        else return false;
+	for(int x = 0; x < size(); x++)
+	{
+	    if(get(x).isConflict(e))
+		return false;
+	}
+	add(e);
+	return true;
     }
     
     //Finds an event given the event name.
     public Event find(String name)
     {
-        return this.get(name);
+        for(int x = 0; x < size(); x++)
+	{
+	    if(get(x).getName().equals(name))
+		return get(x);
+	}
+	return null;
     }
     
-    //Returns the list of all providers in the collection.
+    //Returns the list of all events in the collection.
     public String toString()
     {
-        String str = "";
-      Set   events = this.keySet( );
-      
-      Iterator itr = events.iterator( );
-      
-      while( itr.hasNext( ) )
+      String str = "";
+      for(int x = 0; x < size(); x++)
       {
-         str += this.get( itr.next( ) ).toString( ) + "\n";
+	  str += get(x).toString() + '\n';
       }
-      
       return str;
     }
     
