@@ -55,7 +55,7 @@ public class Reservation{
    
    
    public String toString(){
-      return "Reservation of: " + offer + "For: " + p.toString();
+        return "Reservation for " + p.getName() + ": offering is " + offer.toString();
    }
    
 }

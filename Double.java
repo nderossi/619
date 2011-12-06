@@ -36,12 +36,14 @@ public class Double extends Person
   public String toString()
   {
     String str = "Double:\n";
-    str += " Name = " + p1.getName() + ", Age = ";
+    str += "Name = " + p1.getName() + ", Age = ";
     str += p1.getAge() + ", Gender = " + p1.getGender();
-    str += ", FitLevel = " + p1.getFit() + "\n";
-    str += " Name = " + p2.getName() + ", Age = ";
+    str += ", FitLevel = " + p1.getFit();
+    str += "\nReservations:\n" + p1.res.toString();
+    str += "Name = " + p2.getName() + ", Age = ";
     str += p2.getAge() + ", Gender = " + p2.getGender();
     str += ", FitLevel = " + p2.getFit();
+    str += "\nReservations:\n" + p2.res.toString();
     return( str );
   }
 
