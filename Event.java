@@ -13,6 +13,7 @@ import java.util.*;
 public class Event{
     //------------------------Instance Variables----------------------
     protected String name;                  //Event name.
+    protected String service;               //Service name.
     protected GregorianCalendar startTime;  //Start time for the event.
     protected GregorianCalendar endTime;    //End time for the event.
     protected Providers availableProviders; //Collection providers that offer 
@@ -26,6 +27,7 @@ public class Event{
     public Event(String n, int d, GregorianCalendar s, GregorianCalendar e, 
             Providers provs, String serv)
     {
+	service = serv;
 	hasProvider = false;
         name = n;
         dayOfTour = d;
@@ -105,7 +107,33 @@ public class Event{
     public GregorianCalendar getEndTime() { return endTime; }
     
     //Adds a provider to the collection of providers.
-    public void addProvider(Provider p) { availableProviders.add(p); }
+    public void addProvider(Provider p) 
+    {
+	 Date eOpen = startTime.getTime();
+         Date eClose = endTime.getTime();
+         GregorianCalendar open = p.getOpenTime();
+         GregorianCalendar close = p.getClosingTime();
+         Date o = open.getTime();
+         Date c = close.getTime();
+         if(o.compareTo(eOpen) <= 0 && c.compareTo(eClose) >= 0)
+         {
+            if(p.getService().equals(service))
+	    {
+               boolean done = false;
+	       for(int y = 0; y < availableProviders.size(); y++)
+	       {
+		   if(availableProviders.get(y).getCapacity() < p.getCapacity())
+		   {
+		       availableProviders.add(y, p);
+		       done = true;
+		   }
+	       }
+	       if(done == false)
+		   availableProviders.add(p); 
+            }
+	 }
+          
+    }
 
     //Returns the provider(s) being used by this event.
     public Providers getUsedProviders() { return usedProviders; }

@@ -39,6 +39,13 @@ public class Events extends ArrayList<Event>{
 	    get(x).updateProviders(curCap);
     }
 
+    //Adds a provider to all events in the collection.
+    public void addProvider(Provider p)
+    {
+	for(int x = 0; x < size(); x++)
+	    get(x).addProvider(p);
+    }
+
     //Returns the list of all events in the collection.
     public String toString()
     {
