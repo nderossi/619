@@ -91,6 +91,7 @@ public class Offering{
       if( r != null ){
          reservs.add( r );
          openSlots--;
+         tour.getEvents().updateEventProviders( reservs.size() );
       }
    }
    
@@ -101,6 +102,7 @@ public class Offering{
       if( r != null ){
          reservs.remove( r );
          openSlots++;
+         tour.getEvents().updateEventProviders( reservs.size() );
       }
    }
    
