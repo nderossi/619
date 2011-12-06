@@ -106,9 +106,9 @@ public class Event{
     
     //Adds a provider to the collection of providers.
     public void addProvider(Provider p) { providers.add(p); }
-    
-    //Finds a provider in the collection by name.  Returns null if not found.
-    public Provider getProvider(String name) { return providers.find(name); }
+
+    //Returns the provider(s) being used by this event.
+    public Providers getUsedProviders() { return usedProviders; }
     
     //Returns true if the event has providers for it.  Returns false otherwise.
     public boolean hasProvider() { return hasProvider; }
