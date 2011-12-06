@@ -19,6 +19,7 @@ public class Person
   protected int fitLevel;
   protected String gender;
   protected int type;
+  protected Reservations res;
   
   /**
    * Constructor for Person object
@@ -37,6 +38,7 @@ public class Person
     if( f < 0 )
       f = 0;
     fitLevel = f;
+    res = new Reservations();
   }
 
   /**
@@ -82,6 +84,16 @@ public class Person
   public int getType()
   {
     return( type );
+  }
+
+  /**
+   * Method to add a reservation to
+   *  person object.
+   */
+  public boolean addReserv( Reservation r )
+  {
+    res.add( r );
+    return( true );
   }
 
   /**

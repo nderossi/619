@@ -129,10 +129,12 @@ public class Tour{ //implements TourStrat
     * Added: 11/29
     * Method to add Event to collection
     */
-   public void addEvent( Event e )
+   public boolean addEvent( Event e )
    {
      if( e != null )
-       acts.addEvent( e );
+       return( acts.addEvent( e ) );
+     else
+       return( false );
    }
    
    //---------------------setMax(int)------------------

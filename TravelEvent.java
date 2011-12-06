@@ -15,9 +15,9 @@ public class TravelEvent extends Event{
     
     //Constructor
     public TravelEvent(String n, String st, String d, GregorianCalendar s,
-           GregorianCalendar e, int day, Providers provs )
+		       GregorianCalendar e, int day, Providers provs, String serv )
     {
-        super(n, day, s, e, provs, "travel");
+        super(n, day, s, e, provs, serv);
         destination = d;
         startLocation = st;
     }
