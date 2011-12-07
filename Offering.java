@@ -21,13 +21,10 @@ public class Offering{
    int openSlots;
    Reservations reservs;
    int year, month, day;
-<<<<<<< HEAD
    boolean onHold = false;
-   
-=======
    int numDoubles;
 
->>>>>>> 0577ccfcfc8c96dda58f958d2c5fd6d3b660b838
+
    //--------------------contructor( tour, *DATE*)------------
    //include start date
    public Offering( Tour t, int y, int m, int d){
@@ -100,17 +97,15 @@ public class Offering{
       if( r != null ){
          reservs.add( r );
          openSlots--;
-<<<<<<< HEAD
          tour.getEvents().updateEventProviders( reservs.size() );
          for( int i = 0; i < tour.getEvents().size(); i++ ){
         	 if( !tour.getEvents().get(i).hasProvider() )
         		 putOnHold();
          }
-=======
+
 	 if(r.getPerson().getType() == 2)
             numDoubles++;
          tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
->>>>>>> 0577ccfcfc8c96dda58f958d2c5fd6d3b660b838
       }
       return true;
    }
@@ -136,7 +131,6 @@ public class Offering{
       if( r != null ){
          reservs.remove( r );
          openSlots++;
-<<<<<<< HEAD
          tour.getEvents().updateEventProviders( reservs.size() );
          boolean hasProviders = true;
          for( int i = 0; i < tour.getEvents().size(); i++ ){
@@ -146,11 +140,9 @@ public class Offering{
          if( hasProviders )
         	 takeOffHold();
          
-=======
          if(r.getPerson().getType() == 2)
-	    numDoubles--;
+	         numDoubles--;
 	 tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
->>>>>>> 0577ccfcfc8c96dda58f958d2c5fd6d3b660b838
       }
    }
    
