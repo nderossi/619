@@ -41,4 +41,18 @@ public class Reservations extends ArrayList<Reservation>{
       
    }
    
+   //------------------------onHold()---------------
+   //put all reservations on hold
+   public void onHold(){
+	   for( int i = 0; i < size(); i++)
+		   get(i).putOnHold();
+   }
+   
+   //------------------------offHold()---------------
+   //take all reservations off hold
+   public void offHold(){
+	   for( int i = 0; i < size(); i++)
+		   get(i).takeOffHold();  
+   }
+   
 }

@@ -21,6 +21,7 @@ public class Offering{
    int openSlots;
    Reservations reservs;
    int year, month, day;
+   boolean onHold = false;
    
    //--------------------contructor( tour, *DATE*)------------
    //include start date
@@ -87,12 +88,33 @@ public class Offering{
    //add reservation to the list
    //********eventually add in checks to see if it can be added*********
    //********add another method to add with only the person (when class available)********
-   public void addReserv(Reservation r){
+   public boolean addReserv(Reservation r){
+	  if( openSlots == 0 )
+      	 return false;
       if( r != null ){
          reservs.add( r );
          openSlots--;
          tour.getEvents().updateEventProviders( reservs.size() );
+         for( int i = 0; i < tour.getEvents().size(); i++ ){
+        	 if( !tour.getEvents().get(i).hasProvider() )
+        		 putOnHold();
+         }
       }
+      return true;
+   }
+   
+   //-------------------putOnHold()------------------
+   //puts all reservations on hold
+   public void putOnHold(){
+	   onHold = true;
+	   reservs.onHold();
+   }
+   
+   //-------------------takeOffHold()------------------
+   //takes all reservations off hold
+   public void takeOffHold(){
+	   onHold = false;
+	   reservs.offHold();
    }
    
     
@@ -103,7 +125,21 @@ public class Offering{
          reservs.remove( r );
          openSlots++;
          tour.getEvents().updateEventProviders( reservs.size() );
+         boolean hasProviders = true;
+         for( int i = 0; i < tour.getEvents().size(); i++ ){
+        	 if( !tour.getEvents().get(i).hasProvider() )
+        		 hasProviders = false;
+         }
+         if( hasProviders )
+        	 takeOffHold();
+         
       }
+   }
+   
+   //--------------------addProvider(Provider)------------------
+   //add possible provider to all events
+   public void addProvider( Provider prov ){
+	   tour.getEvents().addProvider( prov );
    }
    
    //--------------------changeSlots(int)------------
