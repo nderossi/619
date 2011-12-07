@@ -21,7 +21,8 @@ public class Offering{
    int openSlots;
    Reservations reservs;
    int year, month, day;
-   
+   int numDoubles;
+
    //--------------------contructor( tour, *DATE*)------------
    //include start date
    public Offering( Tour t, int y, int m, int d){
@@ -39,6 +40,7 @@ public class Offering{
       endDate = new GregorianCalendar( year, month, day + (tour.numDays() - 1) );
       
       reservs = new Reservations();
+      numDoubles = 0;
    }
    
    //--------------------GregorianCalendar getStart()-------------------
@@ -91,7 +93,9 @@ public class Offering{
       if( r != null ){
          reservs.add( r );
          openSlots--;
-         tour.getEvents().updateEventProviders( reservs.size() );
+	 if(r.getPerson().getType() == 2)
+            numDoubles++;
+         tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
       }
    }
    
@@ -102,7 +106,9 @@ public class Offering{
       if( r != null ){
          reservs.remove( r );
          openSlots++;
-         tour.getEvents().updateEventProviders( reservs.size() );
+         if(r.getPerson().getType() == 2)
+	    numDoubles--;
+	 tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
       }
    }
    
