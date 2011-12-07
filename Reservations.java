@@ -41,6 +41,10 @@ public class Reservations extends ArrayList<Reservation>{
       
    }
 
+  /**
+   * This method overrides the general debugging
+   *  toString() method provided by ArrayList
+   */
   public String toString()
   {
     StringBuilder sB = new StringBuilder();
