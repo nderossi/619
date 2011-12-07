@@ -10,12 +10,13 @@ import java.util.*;
 
 public class Provider {
     //--------------------Instance Variables------------------------
-    protected String name;              //Provider name.
-    protected GregorianCalendar open;   //Time that the provider opens.
-    protected GregorianCalendar close;  //Time that the provider closes.
-    protected int capacity;             //Provider capacity.
+    protected String name;              					//Provider name.
+    protected GregorianCalendar open;   					//Time that the provider opens.
+    protected GregorianCalendar close;  					//Time that the provider closes.
+    protected int capacity;             					//Provider capacity.
     protected String location;
     protected String service;
+    protected ArrayList<GregorianCalendar> datesReserved;	//Dates the provider is in use.
     
     //Constructor
     public Provider(String n, String serv, String locale, GregorianCalendar o, GregorianCalendar c,
@@ -27,6 +28,41 @@ public class Provider {
         open = o;
         close = c;
         capacity = cap;
+        datesReserved = new ArrayList<GregorianCalendar>();
+    }
+    
+    //Returns the list of dates the provider is reserved.
+    public ArrayList<GregorianCalendar> getDatesReserved() { return datesReserved; }
+
+    //Adds a pair of dates (start/end date) to the list of dates reserved.
+    public void addReservedDate(GregorianCalendar start, GregorianCalendar end)
+    {
+    	datesReserved.add(start);
+    	datesReserved.add(end);
+    }
+    
+    /*Returns true if there is a conflict between a given date and the dates the
+     *provider is reserved.
+     */
+    public boolean isConflict(GregorianCalendar start, GregorianCalendar end)
+    {
+    	boolean conflicting = false;
+    	Date sDate = start.getTime();
+    	Date eDate = end.getTime();
+    	for(int x = 0; x < datesReserved.size(); x += 2)
+    	{
+    		Date s = datesReserved.get(x).getTime();
+    		Date e = datesReserved.get(x+1).getTime();
+    		if(sDate.compareTo(s) < 0 && eDate.compareTo(s) > 0)
+                conflicting = true;
+            if(sDate.compareTo(e) < 0 && eDate.compareTo(e) > 0)
+                conflicting = true;
+            if(sDate.compareTo(s) < 0 && eDate.compareTo(e) > 0)
+                conflicting = true;
+            if(sDate.compareTo(s) > 0 && eDate.compareTo(e) < 0)
+                conflicting = true;
+    	}
+    	return conflicting;
     }
     
     //Returns the provider name.

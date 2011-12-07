@@ -95,7 +95,17 @@ public class Person
     res.add( r );
     return( true );
   }
-
+  
+ /**
+  * Method to remove a reservation from a
+  * person object
+  */
+  public void removeReserv(Reservation r){
+      if( r != null )
+         res.remove( r );
+   }
+  
+  
   /**
    * Method to return a String
    * representation of the Person

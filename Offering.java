@@ -21,7 +21,10 @@ public class Offering{
    int openSlots;
    Reservations reservs;
    int year, month, day;
-   
+   boolean onHold = false;
+   int numDoubles;
+
+
    //--------------------contructor( tour, *DATE*)------------
    //include start date
    public Offering( Tour t, int y, int m, int d){
@@ -39,6 +42,7 @@ public class Offering{
       endDate = new GregorianCalendar( year, month, day + (tour.numDays() - 1) );
       
       reservs = new Reservations();
+      numDoubles = 0;
    }
    
    //--------------------GregorianCalendar getStart()-------------------
@@ -87,12 +91,35 @@ public class Offering{
    //add reservation to the list
    //********eventually add in checks to see if it can be added*********
    //********add another method to add with only the person (when class available)********
-   public void addReserv(Reservation r){
+   public boolean addReserv(Reservation r){
+	  if( openSlots == 0 )
+      	 return false;
       if( r != null ){
          reservs.add( r );
          openSlots--;
-         tour.getEvents().updateEventProviders( reservs.size() );
+         if(r.getPerson().getType() == 2)
+             numDoubles++;
+         tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
+         for( int i = 0; i < tour.getEvents().size(); i++ ){
+        	 if( !tour.getEvents().get(i).hasProvider() )
+        		 putOnHold();
+         }
       }
+      return true;
+   }
+   
+   //-------------------putOnHold()------------------
+   //puts all reservations on hold
+   public void putOnHold(){
+	   onHold = true;
+	   reservs.onHold();
+   }
+   
+   //-------------------takeOffHold()------------------
+   //takes all reservations off hold
+   public void takeOffHold(){
+	   onHold = false;
+	   reservs.offHold();
    }
    
     
@@ -102,8 +129,26 @@ public class Offering{
       if( r != null ){
          reservs.remove( r );
          openSlots++;
-         tour.getEvents().updateEventProviders( reservs.size() );
+         if(r.getPerson().getType() == 2)
+	         numDoubles--;
+         tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
+         boolean hasProviders = true;
+         for( int i = 0; i < tour.getEvents().size(); i++ ){
+        	 if( !tour.getEvents().get(i).hasProvider() )
+        		 hasProviders = false;
+         }
+         if( hasProviders )
+        	 takeOffHold();
+         
+         
+	
       }
+   }
+   
+   //--------------------addProvider(Provider)------------------
+   //add possible provider to all events
+   public void addProvider( Provider prov ){
+	   tour.getEvents().addProvider( prov );
    }
    
    //--------------------changeSlots(int)------------

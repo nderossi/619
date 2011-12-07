@@ -60,6 +60,15 @@ public class Offerings extends ArrayList<Offering>{
    }
    
    
+ //--------------------addProvider(Provider)------------------
+   //add possible provider to all events
+   public void addProvider( Provider prov ){
+	   for( int i = 0; i < size(); i++ )
+		   get(i).addProvider(prov);
+   }
+   
+   
+   
    //-------------------changeSlots(int)-------------------------------
    //update the open slots for all offerings
    public void changeSlots(int dif){

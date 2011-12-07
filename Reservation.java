@@ -15,10 +15,11 @@ public class Reservation{
    //----------------instance variables--------------
    Offering offer;
    Person p;
+   boolean onHold = false;
    
    
    //----------------constructor( Person, Offering )--------------
-   public Reservation( Person per, Offering o ){ //include person later
+   public Reservation( Person per, Offering o ){ 
       
       if( o == null )
          offer = new Offering(null, 0, 0, 0);
@@ -49,13 +50,28 @@ public class Reservation{
    //cancel this reservation with the offering
    public void cancel(){
       offer.removeReserv( this );
-      //cancel for all person stuff too
+      p.removeReserv(this);
+   }
+   
+   //------------------------putOnHold()-----------------------
+   //put reservation on hold
+   public void putOnHold(){
+	   onHold = true;
+   }
+   
+   //------------------------takeOFfHold()-----------------------
+   //take reservation off hold
+   public void takeOffHold(){
+	   onHold = false;
    }
    
    
    
    public String toString(){
-        return "Reservation for " + p.getName() + "\n\toffering is:\n\t\t " + offer.toString();
+	   String hold = "";
+	   if( onHold )
+		   hold = "\t Currently on hold";
+        return "Reservation for " + p.getName() + "\n\toffering is:\n\t\t " + offer.toString() + hold;
    }
    
 }

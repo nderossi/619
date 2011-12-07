@@ -33,10 +33,10 @@ public class Events extends ArrayList<Event>{
     }
     
     //Updates the providers used for all events based on the current capacity.
-    public void updateEventProviders(int curCap)
+    public void updateEventProviders(int curCap, int numDoubles)
     {
 	for(int x = 0; x < size(); x++)
-	    get(x).updateProviders(curCap);
+	    get(x).updateProviders(curCap, numDoubles);
     }
 
     //Adds a provider to all events in the collection.

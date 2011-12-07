@@ -65,7 +65,7 @@ public class Event{
     }
     
     //Updates the providers being used based on the current capacity.
-    public void updateProviders(int curCap)
+    public void updateProviders(int curCap, int numDoubles)
     {
 	usedProviders.clear();
 	hasProvider = false;
@@ -86,8 +86,20 @@ public class Event{
 		    if(totalCap > curCap)
 		    {
 			for(int y = 0; y <= x; y++)
-			    usedProviders.add(p.get(y));
-			hasProvider = true;	
+			{
+			    int cap = p.getCapacity();
+			    cap = cap/2;
+			    while(cap >0)
+		            {
+				numDoubles--;
+				cap--;
+			    }
+		            usedProviders.add(p.get(y));
+			}
+			if(numDoubles == 0)
+			    hasProvider = true;
+			else usedProviders.clear();	
+		            
 		    }
 		}	  
 	    } 
