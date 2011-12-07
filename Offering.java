@@ -123,10 +123,14 @@ public class Offering{
    }
    
    
-   public String toString(){
-      
-      return "Tour: " + tour.id() + "\n Start Date: " + startDate.getTime() + "\t End Date: " + endDate.getTime() + "\n";
-      
+   public String toString()
+   {
+      String str = "Tour: " + tour.id();
+      str += "\n Start Date: " + month + "/" + day;
+      str += "/" + year + "\t End Date: " + endDate.get( Calendar.MONTH );
+      str += "/" + endDate.get( Calendar.DAY_OF_MONTH ) + "/";
+      str += endDate.get( Calendar.YEAR ) + "\n";
+      return( str );
    }
    
    

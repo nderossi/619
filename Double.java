@@ -30,6 +30,16 @@ public class Double extends Person
   }
 
   /**
+   * Overrided addReserv method so that
+   *  the reservation scheduled is added
+   *  to both members of the double.
+   */
+  public boolean addReserv( Reservation r )
+  {
+    return( p1.addReserv( r ) && p2.addReserv( r ) ); 
+  }
+
+  /**
    * Method to return a String representation
    *  of the Double object.
    */
@@ -40,7 +50,7 @@ public class Double extends Person
     str += p1.getAge() + ", Gender = " + p1.getGender();
     str += ", FitLevel = " + p1.getFit();
     str += "\nReservations:\n" + p1.res.toString();
-    str += "Name = " + p2.getName() + ", Age = ";
+    str += "\nName = " + p2.getName() + ", Age = ";
     str += p2.getAge() + ", Gender = " + p2.getGender();
     str += ", FitLevel = " + p2.getFit();
     str += "\nReservations:\n" + p2.res.toString();

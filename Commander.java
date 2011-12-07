@@ -123,6 +123,8 @@ public class Commander
     GregorianCalendar cl = new GregorianCalendar( 2011, 11, 10, hours, secs );
     Provider p = new Provider( name, serv, location, op, cl, cap );
     ps.add( p );
+    // go through offerings and update individual events providers
+    
   }
 
   /**
@@ -169,7 +171,6 @@ public class Commander
           hours = eT%100;
           GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
           e = new TravelEvent( mode, startLoc, endLoc, s, end, i+1, ps, mode );
-          //add providers to event on creation
         }
         else
         {
@@ -187,7 +188,6 @@ public class Commander
           hours = eT%100;
           GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
           e = new ActivityEvent( act, s, end, fit, i+1, ps, act );
-          //add providers to event on creation
         }
 
         if( t.addEvent( e ) )
