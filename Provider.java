@@ -51,8 +51,8 @@ public class Provider {
     	Date eDate = end.getTime();
     	for(int x = 0; x < datesReserved.size(); x += 2)
     	{
-    		Date s = datesRes.get(x).getTime();
-    		Date e = dateRes.get(x+1).getTime();
+    		Date s = datesReserved.get(x).getTime();
+    		Date e = datesReserved.get(x+1).getTime();
     		if(sDate.compareTo(s) < 0 && eDate.compareTo(s) > 0)
                 conflicting = true;
             if(sDate.compareTo(e) < 0 && eDate.compareTo(e) > 0)
