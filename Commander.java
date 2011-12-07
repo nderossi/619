@@ -199,7 +199,7 @@ public class Commander
       }
       s.nextLine();
     }
-    ts.add( t );
+    ts.addTour( t );
   }
 
   /**

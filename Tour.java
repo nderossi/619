@@ -162,7 +162,7 @@ public class Tour{ //implements TourStrat
       
       s += "\nOfferings: " + offers.toString();
 
-      s += "\nEvents: " + acts.toString();
+      s += "\nEvents: " + acts.toString() + "\n";
       
       return s;
    }

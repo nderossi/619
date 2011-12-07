@@ -40,5 +40,13 @@ public class Reservations extends ArrayList<Reservation>{
       }
       
    }
+
+  public String toString()
+  {
+    StringBuilder sB = new StringBuilder();
+    for( Reservation r : this )
+      sB.append( r );
+    return( sB.toString() );
+  }
    
 }
