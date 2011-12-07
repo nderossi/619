@@ -49,7 +49,7 @@ public class Events extends ArrayList<Event>{
     //Returns the list of all events in the collection.
     public String toString()
     {
-      String str = "";
+      String str = "\n";
       for(int x = 0; x < size(); x++)
       {
 	  str += get(x).toString() + '\n';
