@@ -123,8 +123,7 @@ public class Commander
     GregorianCalendar cl = new GregorianCalendar( 2011, 11, 10, hours, secs );
     Provider p = new Provider( name, serv, location, op, cl, cap );
     ps.add( p );
-    // go through offerings and update individual events providers
-    
+    updateProviders( p );
   }
 
   /**
@@ -267,5 +266,16 @@ public class Commander
       System.err.println( "Person " + persName + " has not been defined!" );
     s.nextLine();
   }
+
+  /**
+   * This class is used to iterate through the collection
+   *  of offerings and update each individual events'
+   *  providers.
+   */
+   private void updateProviders( Provider p )
+   {
+     for( Offering o : os )
+       o.addProvider( p );
+   }
 
 }
