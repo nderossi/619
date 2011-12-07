@@ -98,8 +98,8 @@ public class Person
 	  boolean conflicting = false;
 	  for(int x = 0; x < res.size(); x++)
 	  {
-		  Date sDate = res.get(x).getOffering().getStart();
-		  Date eDate = res.get(x).getOffering().getEnd();
+		  Date sDate = res.get(x).getOffering().getStart().getTime();
+		  Date eDate = res.get(x).getOffering().getEnd().getTime();
 		  
 		  //Cases where the reservation times would conflict.
 	      if(s.compareTo(sDate) < 0 && e.compareTo(sDate) > 0)
