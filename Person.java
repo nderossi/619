@@ -92,8 +92,28 @@ public class Person
    */
   public boolean addReserv( Reservation r )
   {
-    res.add( r );
-    return( true );
+	  Date s = r.getOffering().getStart().getTime();
+	  Date e = r.getOffering().getEnd().getTime();
+	  
+	  boolean conflicting = false;
+	  for(int x = 0; x < reservations.size(); x++)
+	  {
+		  Date sDate = reservations.get(x).getOffering().getStart();
+		  Date eDate = reservations.get(x).getOffering().getEnd();
+		  
+		  //Cases where the reservation times would conflict.
+	      if(s.compareTo(sDate) < 0 && e.compareTo(sDate) > 0)
+	          conflicting = true;
+	      if(s.compareTo(eDate) < 0 && e.compareTo(eDate) > 0)
+	          conflicting = true;
+	      if(s.compareTo(sDate) < 0 && e.compareTo(eDate) > 0)
+	          conflicting = true;
+	      if(s.compareTo(sDate) > 0 && e.compareTo(eDate) < 0)
+	          conflicting = true;        
+	  }
+	  if(conflicting == false)
+		  res.add( r );
+	  return conflicting;
   }
   
  /**
