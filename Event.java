@@ -87,7 +87,7 @@ public class Event{
 		    {
 			for(int y = 0; y <= x; y++)
 			{
-			    int cap = p.getCapacity();
+			    int cap = p.get(y).getCapacity();
 			    cap = cap/2;
 			    while(cap >0)
 		            {
