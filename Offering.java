@@ -97,15 +97,13 @@ public class Offering{
       if( r != null ){
          reservs.add( r );
          openSlots--;
-         tour.getEvents().updateEventProviders( reservs.size() );
+         if(r.getPerson().getType() == 2)
+             numDoubles++;
+         tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
          for( int i = 0; i < tour.getEvents().size(); i++ ){
         	 if( !tour.getEvents().get(i).hasProvider() )
         		 putOnHold();
          }
-
-	 if(r.getPerson().getType() == 2)
-            numDoubles++;
-         tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
       }
       return true;
    }
@@ -131,7 +129,9 @@ public class Offering{
       if( r != null ){
          reservs.remove( r );
          openSlots++;
-         tour.getEvents().updateEventProviders( reservs.size() );
+         if(r.getPerson().getType() == 2)
+	         numDoubles--;
+         tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
          boolean hasProviders = true;
          for( int i = 0; i < tour.getEvents().size(); i++ ){
         	 if( !tour.getEvents().get(i).hasProvider() )
@@ -140,9 +140,8 @@ public class Offering{
          if( hasProviders )
         	 takeOffHold();
          
-         if(r.getPerson().getType() == 2)
-	         numDoubles--;
-	 tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
+         
+	
       }
    }
    
