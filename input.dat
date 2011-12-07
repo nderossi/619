@@ -31,8 +31,18 @@ event travel walk Durham Lee 0800 0830
 event act breakfast 0900 1100 2
 3
 event travel boat Lee Durham 0850 0900
-*
+# Tour 3
+tour Tour3 CC Lee Durham 2 1 130
+1
+event act lunch 1100 1200 1
+2
+event act lunch 1100 1200 1
+3
+event act lunch 1100 1200 1
+# Offerings
 offering AA 11092011
 offering BB 11122011
+offering CC 11172011
 reservation Bill AA 11092011
 reservation Bill BB 11122011
+reservation Jan CC 11172011
