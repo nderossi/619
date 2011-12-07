@@ -123,6 +123,8 @@ public class Commander
     GregorianCalendar cl = new GregorianCalendar( 2011, 11, 10, hours, secs );
     Provider p = new Provider( name, serv, location, op, cl, cap );
     ps.add( p );
+    // go through offerings and update individual events providers
+    
   }
 
   /**
@@ -144,6 +146,7 @@ public class Commander
     int eT = 0;
     int hours = 0;
     int secs = 0;
+    s.nextLine();
     s.nextLine();
     t = new Tour( comp, id, startLoc, endLoc, cap, days, fit );
     for( int i = 0; i<days; i++ )
@@ -169,7 +172,6 @@ public class Commander
           hours = eT%100;
           GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
           e = new TravelEvent( mode, startLoc, endLoc, s, end, i+1, ps, mode );
-          //add providers to event on creation
         }
         else
         {
@@ -187,19 +189,18 @@ public class Commander
           hours = eT%100;
           GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
           e = new ActivityEvent( act, s, end, fit, i+1, ps, act );
-          //add providers to event on creation
         }
 
         if( t.addEvent( e ) )
           System.err.println( "event Does not conflict!" );
         else
           System.err.println( "event Does conflict" );
-        s.nextLine();
+        //s.nextLine();
 
       }
-      s.nextLine();
+      //s.nextLine();
     }
-    ts.add( t );
+    ts.addTour( t );
   }
 
   /**

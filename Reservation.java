@@ -71,8 +71,7 @@ public class Reservation{
 	   String hold = "";
 	   if( onHold )
 		   hold = "\t Currently on hold";
-	   
-        return "Reservation for " + p.getName() + ": offering is " + offer.toString() + hold;
+        return "Reservation for " + p.getName() + "\n\toffering is:\n\t\t " + offer.toString() + hold;
    }
    
 }

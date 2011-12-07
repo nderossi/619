@@ -13,7 +13,13 @@
 
 import java.util.*;
 
-public class Tours extends ArrayList<Tour>{
+public class Tours extends TreeMap<String,Tour>{
+
+   public void addTour( Tour t )
+   {
+     if( t != null )
+       super.put( t.id(), t );
+   }
    
    //--------------------Tour get( String )----------------------'
    //finds the tour with the specified id
@@ -21,13 +27,7 @@ public class Tours extends ArrayList<Tour>{
       
       if( id == null )
          return null;
-      
-      for( int i = 0; i < size(); i++ ){
-         if( id.equals( get(i).id() )) 
-               return get(i);
-      }
-      
-      return null;
+      return( super.get( id ) );
       
    }
 
@@ -38,11 +38,16 @@ public class Tours extends ArrayList<Tour>{
       if( id == null )
          return;
       
-      for( int i = 0; i < size(); i++ ){
-         if( id.equals( get(i).id() ) )
-               remove(i);
-      }
+      super.remove( id );
 
    }
+
+  public String toString()
+  {
+    StringBuilder sB = new StringBuilder();
+    for( Map.Entry< String, Tour > e : this.entrySet() )
+      sB.append( e.getValue() );
+    return( sB.toString() );
+  }
    
 }

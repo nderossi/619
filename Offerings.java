@@ -78,7 +78,16 @@ public class Offerings extends ArrayList<Offering>{
       
    }
    
-
+  /**
+   * toString() method for this collection
+   */
+  public String toString()
+  {
+    StringBuilder sB = new StringBuilder();
+    for( Offering o : this )
+      sB.append( o );
+    return( sB.toString() );
+  }
    
    
 }

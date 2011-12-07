@@ -21,8 +21,13 @@ public class Offering{
    int openSlots;
    Reservations reservs;
    int year, month, day;
+<<<<<<< HEAD
    boolean onHold = false;
    
+=======
+   int numDoubles;
+
+>>>>>>> 0577ccfcfc8c96dda58f958d2c5fd6d3b660b838
    //--------------------contructor( tour, *DATE*)------------
    //include start date
    public Offering( Tour t, int y, int m, int d){
@@ -40,6 +45,7 @@ public class Offering{
       endDate = new GregorianCalendar( year, month, day + (tour.numDays() - 1) );
       
       reservs = new Reservations();
+      numDoubles = 0;
    }
    
    //--------------------GregorianCalendar getStart()-------------------
@@ -94,11 +100,17 @@ public class Offering{
       if( r != null ){
          reservs.add( r );
          openSlots--;
+<<<<<<< HEAD
          tour.getEvents().updateEventProviders( reservs.size() );
          for( int i = 0; i < tour.getEvents().size(); i++ ){
         	 if( !tour.getEvents().get(i).hasProvider() )
         		 putOnHold();
          }
+=======
+	 if(r.getPerson().getType() == 2)
+            numDoubles++;
+         tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
+>>>>>>> 0577ccfcfc8c96dda58f958d2c5fd6d3b660b838
       }
       return true;
    }
@@ -124,6 +136,7 @@ public class Offering{
       if( r != null ){
          reservs.remove( r );
          openSlots++;
+<<<<<<< HEAD
          tour.getEvents().updateEventProviders( reservs.size() );
          boolean hasProviders = true;
          for( int i = 0; i < tour.getEvents().size(); i++ ){
@@ -133,6 +146,11 @@ public class Offering{
          if( hasProviders )
         	 takeOffHold();
          
+=======
+         if(r.getPerson().getType() == 2)
+	    numDoubles--;
+	 tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
+>>>>>>> 0577ccfcfc8c96dda58f958d2c5fd6d3b660b838
       }
    }
    
@@ -159,10 +177,14 @@ public class Offering{
    }
    
    
-   public String toString(){
-      
-      return "Tour: " + tour.id() + "\n Start Date: " + startDate.getTime() + "\t End Date: " + endDate.getTime() + "\n";
-      
+   public String toString()
+   {
+      String str = "Tour: " + tour.id();
+      str += "\n Start Date: " + month + "/" + day;
+      str += "/" + year + "\t End Date: " + endDate.get( Calendar.MONTH );
+      str += "/" + endDate.get( Calendar.DAY_OF_MONTH ) + "/";
+      str += endDate.get( Calendar.YEAR ) + "\n";
+      return( str );
    }
    
    
