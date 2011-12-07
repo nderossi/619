@@ -96,10 +96,10 @@ public class Person
 	  Date e = r.getOffering().getEnd().getTime();
 	  
 	  boolean conflicting = false;
-	  for(int x = 0; x < reservations.size(); x++)
+	  for(int x = 0; x < res.size(); x++)
 	  {
-		  Date sDate = reservations.get(x).getOffering().getStart();
-		  Date eDate = reservations.get(x).getOffering().getEnd();
+		  Date sDate = res.get(x).getOffering().getStart();
+		  Date eDate = res.get(x).getOffering().getEnd();
 		  
 		  //Cases where the reservation times would conflict.
 	      if(s.compareTo(sDate) < 0 && e.compareTo(sDate) > 0)
