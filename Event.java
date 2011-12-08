@@ -76,39 +76,39 @@ public class Event{
 	Providers p = availableProviders;
 	if(p.size() > 0)
 	{
+		System.err.println("Available Providers");
 	    if(p.get(0).getCapacity() > curCap)
 		{
 	    	hasProvider = true;
 	    	usedProviders.add(p.get(0));
 		}
-	
 	    else{
-		for(int x = 1; x < availableProviders.size(); x++)
-		{
-		    int totalCap = 0;
-		    for(int y = 0; y <= x; y++)
-		    {
-			totalCap += p.get(y).getCapacity();
-		    }
-		    if(totalCap > curCap)
-		    {
-			for(int y = 0; y <= x; y++)
-			{
-			    int cap = p.get(y).getCapacity();
-			    cap = cap/2;
-			    while(cap >0)
-		            {
-				numDoubles--;
-				cap--;
-			    }
-		            usedProviders.add(p.get(y));
-			}
-			if(numDoubles == 0)
-			    hasProvider = true;
-			else usedProviders.clear();	
-		            
-		    }
-		}	  
+	    	for(int x = 1; x < availableProviders.size(); x++)
+	    	{
+	    		int totalCap = 0;
+	    		for(int y = 0; y <= x; y++)
+	    		{
+	    			totalCap += p.get(y).getCapacity();
+	    		}
+	    		if(totalCap > curCap)
+	    		{
+	    			for(int y = 0; y <= x; y++)
+	    			{	
+	    				int cap = p.get(y).getCapacity();
+	    				cap = cap/2;
+	    				while(cap >0)
+	    				{
+	    					numDoubles--;
+	    					cap--;
+	    				}
+	    				usedProviders.add(p.get(y));
+	    			}
+	    			if(numDoubles == 0)
+	    				hasProvider = true;
+	    			else usedProviders.clear();	
+
+	    		}
+	    	}	  
 	    } 
 	}
     }
