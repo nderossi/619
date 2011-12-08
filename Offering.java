@@ -175,6 +175,7 @@ public class Offering{
       str += "/" + year + "\t End Date: " + endDate.get( Calendar.MONTH );
       str += "/" + endDate.get( Calendar.DAY_OF_MONTH ) + "/";
       str += endDate.get( Calendar.YEAR ) + "\n";
+      str += "Held: " + onHold + "\n";
       return( str );
    }
    
