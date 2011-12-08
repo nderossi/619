@@ -181,6 +181,7 @@ public class Commander
         else
         {
           String act = s.next();
+          String locale = s.next();
           sT = s.nextInt();
           eT = s.nextInt();
           fit = s.nextInt();
@@ -193,7 +194,7 @@ public class Commander
           eT = eT/100;
           hours = eT%100;
           GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
-          e = new ActivityEvent( act, s, end, fit, i+1, ps, act );
+          e = new ActivityEvent( act, s, end, fit, i+1, ps, act, locale );
         }
 
         if( !t.addEvent( e ) )
@@ -255,10 +256,12 @@ public class Commander
         if( of != null )
         {
           Reservation r = new Reservation( p1, of );
-          if( p1.getType() == 0 )
-            matchSolos( p1, r );
+          if( p1.getFit() < of.fitnessReq() )
+            System.err.println( "Fitness level is too low for tour! Cannot Reserve!\n" );
           else if( p1.addReserv( r ) )
             System.err.println( "Confliction with current Reservation!" );
+          //else if( p1.getType() == 0 )
+            //matchSolos( p1, r );
         }
       }
       else
@@ -289,10 +292,10 @@ public class Commander
     */ 
    private void matchSolos( Person p, Reservation r )
    {
-     Iterator i = pers.getSoloIter();
+     Iterator<Person> i = pers.getSoloIter();
      while( i.hasNext() )
      {
-       Person pe = ( Person )i.next();
+       Person pe = i.next();
        if( pe.getType() == 0 )
        {
          if( pe.hasReservation( r ) )

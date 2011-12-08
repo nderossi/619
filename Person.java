@@ -110,13 +110,13 @@ public class Person
 		  Date eDate = res.get(x).getOffering().getEnd().getTime();
 		  
 		  //Cases where the reservation times would conflict.
-	      if(s.compareTo(sDate) < 0 && e.compareTo(sDate) > 0)
+	      if(s.compareTo(sDate) <= 0 && e.compareTo(sDate) >= 0)
 	          conflicting = true;
-	      if(s.compareTo(eDate) < 0 && e.compareTo(eDate) > 0)
+	      if(s.compareTo(eDate) <= 0 && e.compareTo(eDate) >= 0)
 	          conflicting = true;
-	      if(s.compareTo(sDate) < 0 && e.compareTo(eDate) > 0)
+	      if(s.compareTo(sDate) <= 0 && e.compareTo(eDate) >= 0)
 	          conflicting = true;
-	      if(s.compareTo(sDate) > 0 && e.compareTo(eDate) < 0)
+	      if(s.compareTo(sDate) >= 0 && e.compareTo(eDate) <= 0)
 	          conflicting = true;        
 	  }
 	  if(conflicting == false)

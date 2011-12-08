@@ -43,6 +43,12 @@ public class Offering{
       
       reservs = new Reservations();
       numDoubles = 0;
+      tour.getEvents().updateEventProviders( reservs.size(), numDoubles );
+      for( int i = 0; i < tour.getEvents().size(); i++ )
+      {
+        if( !tour.getEvents().get(i).hasProvider() )
+          putOnHold();
+      }
    }
    
    //--------------------GregorianCalendar getStart()-------------------
