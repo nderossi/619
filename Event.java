@@ -53,8 +53,11 @@ public class Event{
 		    {
 			if(availableProviders.get(y).getCapacity() < provs.get(x).getCapacity())
 			{
-			    availableProviders.add(y, provs.get(x));
-			    done = true;
+				if(availableProviders.get(y).getLocation().equals(provs.get(x).getLocation()))
+			    {
+					availableProviders.add(y, provs.get(x));
+					done = true;
+			    }
 			}
 		    }
 		    if(done == false)
