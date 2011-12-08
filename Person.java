@@ -41,6 +41,14 @@ public class Person
     res = new Reservations();
   }
 
+  //True if the person has at least one reservation.
+  public boolean hasReservation()
+  {
+	  if(res.size() > 0)
+		  return true;
+	  return false;
+  }
+  
   /**
    * Accessor for name field
    *  Return type: String
