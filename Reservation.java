@@ -1,3 +1,5 @@
+import sun.util.calendar.BaseCalendar.Date;
+
 /*
  * Tyler Janowski
  * CS 619 Group Project
@@ -34,6 +36,18 @@ public class Reservation{
       //  conflictions
       
       offer.addReserv( this );
+   }
+
+   //--------------------boolean isEqual()---------------------
+   public boolean isEqual(Reservation r)
+   {
+	   Date s = r.getOffering().getStart().getTime();
+	   Date e = r.getOffering().getEnd().getTime();
+	   Date s2 = offer.getStart().getTime();
+	   Date e2 = offer.getEnd().getTime();
+	   if(s.equals(s2) == 0 && e.equals(e2) == 0)
+		   return true;
+	   return false;
    }
    
    //--------------------Person getPerson()---------------------
