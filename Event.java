@@ -42,9 +42,9 @@ public class Event{
             Date eOpen = startTime.getTime();
             Date eClose = endTime.getTime();
             GregorianCalendar g1 = new GregorianCalendar(2011, 11, 10, 
-            		eOpen.get(Calendar.HOUR_OF_DAY), eOpen.get(Calendar.MINUTE));
+            		startTime.get(Calendar.HOUR_OF_DAY), startTime.get(Calendar.MINUTE));
             GregorianCalendar g2 = new GregorianCalendar(2011, 11, 10, 
-            		eClose.get(Calendar.HOUR_OF_DAY), eClose.get(Calendar.MINUTE));
+            		endTime.get(Calendar.HOUR_OF_DAY), endTime.get(Calendar.MINUTE));
             eOpen = g1.getTime();
             eClose = g2.getTime();
             GregorianCalendar open = provs.get(x).getOpenTime();
