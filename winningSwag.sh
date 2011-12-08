@@ -2,4 +2,4 @@
 # winningSwag.sh
 
 make
-java a9 input.dat
+java a9 testInput.dat

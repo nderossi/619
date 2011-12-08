@@ -9,6 +9,7 @@ provider lodging holidayInn durham 100 0800 2100
 provider travel busCo durham 100 0800 2100
 provider food young's durham 120 0800 1800
 provider food dunkinDonuts lee 100 0600 2200
+print
 # Tour 1
 tour McGill's AA Durham Lee 2 2 100
 1
@@ -43,6 +44,7 @@ event act lunch 1100 1200 1
 offering AA 11092011
 offering BB 11122011
 offering CC 11172011
+print
 reservation Bill AA 11092011
 reservation Bill BB 11122011
 reservation Jan CC 11172011
