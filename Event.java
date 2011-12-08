@@ -122,6 +122,9 @@ public class Event{
     		} 
     	}
     }
+    
+    //Returns the location of the event.
+    public String getLocation() { return location; }
 
     //Returns the type of event.
     public String getType() { return service; }

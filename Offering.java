@@ -161,10 +161,9 @@ public class Offering{
 	   boolean stillHeld = false;
 	   for(int x = 0; x < tour.getEvents().size(); x++)
 	   {   
-		   
+		   tour.getEvents().updateEventProviders(reservs.size(), numDoubles);
 		   if(tour.getEvents().get(x).hasProvider() == false)
 		   {
-			   System.err.println(tour.getEvents().get(x).toString());			   
 			   stillHeld = true;
 		   }
 	   }
