@@ -317,8 +317,8 @@ public class Commander
     {
       System.err.println( "\nOfferings:\n---------------" );
       System.err.println( os.toString() );
-      System.err.println( "\nPeople:\n---------------" );
-      System.err.println( pers.toString() );
+      // System.err.println( "\nPeople:\n---------------" );
+      // System.err.println( pers.toString() );
     }
 
 }
