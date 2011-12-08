@@ -15,9 +15,9 @@ public class ActivityEvent extends Event {
     
     //Constructor
     public ActivityEvent(String n, GregorianCalendar s, GregorianCalendar e,
-			 int f, int day, Providers provs, String serv )
+			 int f, int day, Providers provs, String serv, String loc )
     {
-        super(n, day, s, e, provs, serv);
+        super(n, day, s, e, provs, serv, loc);
         fitnessLevel = f;
     }
     

@@ -22,11 +22,12 @@ public class Event{
     protected int dayOfTour;                //The day of the event.
     protected boolean hasProvider;         //True if there are providers being 
                                                              //used for this event.
-    
+    protected String location;				//Location of the event.
     //Constructor
     public Event(String n, int d, GregorianCalendar s, GregorianCalendar e, 
-            Providers provs, String serv)
+            Providers provs, String serv, String loc)
     {
+    	location = loc;
 	service = serv;
 	hasProvider = false;
         name = n;

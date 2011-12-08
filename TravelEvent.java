@@ -17,7 +17,7 @@ public class TravelEvent extends Event{
     public TravelEvent(String n, String st, String d, GregorianCalendar s,
 		       GregorianCalendar e, int day, Providers provs, String serv )
     {
-        super(n, day, s, e, provs, serv);
+        super(n, day, s, e, provs, serv, st);
         destination = d;
         startLocation = st;
     }
