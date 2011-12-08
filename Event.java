@@ -77,7 +77,10 @@ public class Event{
 	if(p.size() > 0)
 	{
 	    if(p.get(0).getCapacity() > curCap)
-		usedProviders.add(p.get(0));
+		{
+	    	hasProvider = true;
+	    	usedProviders.add(p.get(0));
+		}
 	
 	    else{
 		for(int x = 1; x < availableProviders.size(); x++)
