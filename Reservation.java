@@ -10,6 +10,8 @@
  * Also helps offerings keep track of people and available space
  */
 
+import java.util.*;
+
 public class Reservation{
   
    //----------------instance variables--------------
