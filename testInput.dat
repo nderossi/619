@@ -2,8 +2,8 @@
 #	Define providers
 provider lodging holidayInn durham 100 0800 2100
 provider travel busCo durham 100 0800 2100
-provider food young's durham 120 0800 1800
-provider food dunkinDonuts lee 100 0600 2200
+provider act young's durham 120 0800 1800
+provider act dunkinDonuts lee 100 0600 2200
 provider act activityHall lee 50 0800 2000
 provider act TotalMinisGolf lee 30 0800 1900
 #	Define working tour

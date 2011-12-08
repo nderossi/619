@@ -171,12 +171,12 @@ public class Commander
           secs = sT%100;
           sT = sT/100;
           hours = sT%100;
-          GregorianCalendar s = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
+          GregorianCalendar s1 = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
           secs = eT%100;
           eT = eT/100;
           hours = eT%100;
           GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
-          e = new TravelEvent( mode, startLoc, endLoc, s, end, i+1, ps, mode );
+          e = new TravelEvent( mode, startLoc, endLoc, s1, end, i+1, ps, "travel" );
         }
         else
         {
@@ -189,12 +189,12 @@ public class Commander
           sT = sT/100;
           hours = sT%100;
           sT = sT/100;
-          GregorianCalendar s = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
+          GregorianCalendar s1 = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
           secs = eT%100;
           eT = eT/100;
           hours = eT%100;
           GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
-          e = new ActivityEvent( act, s, end, fit, i+1, ps, act, locale );
+          e = new ActivityEvent( tmp, s1, end, fit, i+1, ps, act, locale );
         }
 
         if( !t.addEvent( e ) )
@@ -260,8 +260,8 @@ public class Commander
             System.err.println( "Fitness level is too low for tour! Cannot Reserve!\n" );
           else if( p1.addReserv( r ) )
             System.err.println( "Confliction with current Reservation!" );
-          //else if( p1.getType() == 0 )
-            //matchSolos( p1, r );
+          // else if( p1.getType() == 0 )
+            // matchSolos( p1, r );
         }
       }
       else
@@ -302,7 +302,7 @@ public class Commander
          {
            if( pe.getGender().equals( p.getGender() ) )
            {
-             pe = pers.removeSolo( p );
+             pers.removeSolo( p );
              Double d = new Double( pe, p );
              pers.insertPerson( pe );
            } 
