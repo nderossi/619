@@ -114,6 +114,12 @@ public class People
       return( temp );
   }
 
+  public Iterator getSoloIter()
+  {
+    Collection c1 = others.values();
+    return( c1.iterator() );
+  }
+
   /**
    * Method to return a String representation
    * of the entire People collection.

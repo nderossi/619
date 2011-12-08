@@ -256,7 +256,7 @@ public class Commander
         {
           Reservation r = new Reservation( p1, of );
           if( p1.getType() == 0 )
-            matchSolos( p, r );
+            matchSolos( p1, r );
           else if( !p1.addReserv( r ) )
             System.err.println( "Successfully added reservation!" );
           else
@@ -291,8 +291,10 @@ public class Commander
     */ 
    private void matchSolos( Person p, Reservation r )
    {
-     for( Person pe : pers )
+     Iterator i = pers.getSoloIter();
+     while( i.hasNext() )
      {
+       Person pe = ( Person )i.next();
        if( pe.getType() == 0 )
        {
          if( pe.hasReservation( r ) )
