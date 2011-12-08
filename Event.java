@@ -55,16 +55,17 @@ public class Event{
             {
                 if(provs.get(x).getService().equals(serv))
                 {
-                	//System.err.println("Event Location: " + location + " Provider Location: " + provs.get(x).getLocation());
                 	if(provs.get(x).getLocation().equals(location))
                 	{
                 		boolean done = false;
+                	
                 		for(int y = 0; y < availableProviders.size(); y++)
                 		{
                 			if(availableProviders.get(y).getCapacity() < provs.get(x).getCapacity())
                 			{
                 				availableProviders.add(y, provs.get(x));
                     			done = true;
+                    			y = availableProviders.size();
                 			}
                 		}
                 		if(done == false)
@@ -146,8 +147,10 @@ public class Event{
          GregorianCalendar close = p.getClosingTime();
          Date o = open.getTime();
          Date c = close.getTime();
+         
          if(o.compareTo(eOpen) <= 0 && c.compareTo(eClose) >= 0)
          {
+        	
             if(p.getService().equals(service))
             {
             	boolean done = false;

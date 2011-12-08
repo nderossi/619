@@ -142,7 +142,7 @@ public class Offering{
          for( int i = 0; i < tour.getEvents().size(); i++ ){
         	 if( !tour.getEvents().get(i).hasProvider() )
         	 {
-        		    //System.err.println(tour.getEvents().get(i).toString());
+        		    System.err.println(tour.getEvents().get(i).toString());
         		 	hasProviders = false;
         	 }
          }
