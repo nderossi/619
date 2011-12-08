@@ -71,12 +71,13 @@ provider travel trainPeeps Buffalo 100 0100 2100
 #	Print offering
 print 
 #	Try to fill past provider capacity (on hold)
-reservation Bob CC 11130011
-reservation Jan CC 11130011
-reservation Anne CC 11130011
-reservation Jane CC 11130011
-reservation Jack CC 11130011
-
+reservation Bob CC 11302011
+reservation Jan CC 11302011
+reservation Anne CC 11302011
+reservation Jane CC 11302011
+reservation Jack CC 11302011
+reservation John CC 11302011
+reservation Elly CC 11302011
 #	Print offering
 print
 #	Add provider that can split capacity(off hold)
