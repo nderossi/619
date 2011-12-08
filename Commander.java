@@ -55,6 +55,8 @@ public class Commander
         defineOffer();
       else if( input.equals( "reservation" ) )
         defineReserv();
+      else if( input.equals( "print" ) )
+        printMethod();
       else if( input.equals( "#" ) )
         System.out.println( "#" + s.nextLine() );
       else
@@ -194,9 +196,7 @@ public class Commander
           e = new ActivityEvent( act, s, end, fit, i+1, ps, act );
         }
 
-        if( t.addEvent( e ) )
-          System.err.println( "event Does not conflict!" );
-        else
+        if( !t.addEvent( e ) )
         {
           System.err.println( "event Does conflict" );
           return;
@@ -257,10 +257,8 @@ public class Commander
           Reservation r = new Reservation( p1, of );
           if( p1.getType() == 0 )
             matchSolos( p1, r );
-          else if( !p1.addReserv( r ) )
-            System.err.println( "Successfully added reservation!" );
-          else
-            System.err.println( "Confliction error with current reservations!" );
+          else if( p1.addReserv( r ) )
+            System.err.println( "Confliction with current Reservation!" );
         }
       }
       else
@@ -308,6 +306,19 @@ public class Commander
           }
         }
       }
+    }
+
+    /**
+     * This method is designed to output the
+     *  offerings and reservations collections
+     *  for the demonstration purposes.
+     */
+    private void printMethod()
+    {
+      System.err.println( "\nOfferings:\n---------------" );
+      System.err.println( os.toString() );
+      System.err.println( "\nPeople:\n---------------" );
+      System.err.println( pers.toString() );
     }
 
 }
