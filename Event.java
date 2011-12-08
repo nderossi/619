@@ -145,6 +145,7 @@ public class Event{
 		   {
 		       availableProviders.add(y, p);
 		       done = true;
+                       break;
 		   }
 	       }
 	       if(done == false)

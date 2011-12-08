@@ -194,7 +194,7 @@ public class Commander
           eT = eT/100;
           hours = eT%100;
           GregorianCalendar end = new GregorianCalendar( 2011, 11, 10+i, hours, secs );
-          e = new ActivityEvent( tmp, s1, end, fit, i+1, ps, act, locale );
+          e = new ActivityEvent( act, s1, end, fit, i+1, ps, tmp, locale );
         }
 
         if( !t.addEvent( e ) )
