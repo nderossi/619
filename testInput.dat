@@ -140,7 +140,7 @@ print
 provider travel themSherpas Everest 20 0600 2000
 
 #	Define Tour (high fitness)
-tour Climber's DD Everest Everest 2 2 5
+tour Climber's DD Everest Everest 1 10 5
 1
 event travel climb Everest Everest 0600 2000
 
