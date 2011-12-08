@@ -36,7 +36,7 @@ public class Event{
         availableProviders = new Providers();
         usedProviders = new Providers();
 
-	for(int x = 0; x < provs.size(); x++)
+        for(int x = 0; x < provs.size(); x++)
         {
             Date eOpen = startTime.getTime();
             Date eClose = endTime.getTime();
@@ -47,21 +47,21 @@ public class Event{
             if(o.compareTo(eOpen) <= 0 && c.compareTo(eClose) >= 0)
             {
                 if(provs.get(x).getService().equals(serv))
-		{
-                    boolean done = false;
-		    for(int y = 0; y < availableProviders.size(); y++)
-		    {
-			if(availableProviders.get(y).getCapacity() < provs.get(x).getCapacity())
-			{
-				if(availableProviders.get(y).getLocation().equals(provs.get(x).getLocation()))
-			    {
-					availableProviders.add(y, provs.get(x));
-					done = true;
-			    }
-			}
-		    }
-		    if(done == false)
-			availableProviders.add(provs.get(x)); 
+                {
+                	if(provs.get(x).getLocation().equals(location))
+                	{
+                		boolean done = false;
+                		for(int y = 0; y < availableProviders.size(); y++)
+                		{
+                			if(availableProviders.get(y).getCapacity() < provs.get(x).getCapacity())
+                			{
+                				availableProviders.add(y, provs.get(x));
+                    			done = true;
+                			}
+                		}
+                		if(done == false)
+                			availableProviders.add(provs.get(x));
+                	}
                 }
             }
         }
