@@ -123,6 +123,21 @@ public class Person
 		  res.add( r );
 	  return conflicting;
   }
+
+  /**
+   * Method to determine whether this Person
+   *  has the specified Reservation in their
+   *  collection.
+   */
+  public boolean hasReservation( Reservation r )
+  {
+    for( Reservation re : res )
+    {
+      if( re.isEqual( r ) )
+        return( true );
+    }
+    return( false );
+  }
   
  /**
   * Method to remove a reservation from a

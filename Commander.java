@@ -62,11 +62,9 @@ public class Commander
     }
     System.out.println( "\nPeople:\n----------------" );
     System.out.println( pers.toString() );
-    System.out.println( "Providers:\n---------------" );
-    System.out.println( ps.toString() );
     System.out.println( "\nTours:\n---------------" );
     System.out.println( ts.toString() );
-    System.out.println( "\nOfferings:\n---------------" );
+    System.out.println( "Offerings:\n---------------" );
     System.out.println( os.toString() );
   }
 
@@ -83,9 +81,15 @@ public class Commander
     String gender = s.next();
     int fitLevel = s.nextInt();
     if( type.equals( "solo" ) )
+    {
       p = new Solo( name, age, gender, fitLevel );
+      pers.insertPerson( p );
+    }
     else if( type.equals( "single" ) )
+    {
       p = new Single( name, age, gender, fitLevel );
+      pers.insertPerson( p );
+    }
     else if( type.equals( "double" ) )
     {
       String name2 = s.next();
@@ -94,10 +98,10 @@ public class Commander
       int f2 = s.nextInt();
       Person tmp = new Single( name, age, gender, fitLevel );
       p = new Double( tmp, new Single( name2, age2, gender2, f2 ) );
+      pers.insertPerson( p );
     }
     else
       System.out.println( "Invalid person type!" );
-    pers.insertPerson( p );
     s.nextLine();
   }
   
@@ -193,11 +197,11 @@ public class Commander
         if( t.addEvent( e ) )
           System.err.println( "event Does not conflict!" );
         else
+        {
           System.err.println( "event Does conflict" );
-        //s.nextLine();
-
+          return;
+        }
       }
-      //s.nextLine();
     }
     ts.addTour( t );
   }
@@ -208,7 +212,6 @@ public class Commander
    */
   private void defineOffer()
   {
-    System.err.println( "OFFERING!" );
     String tourId = s.next();
     int sDate = s.nextInt();
     int year = sDate%10000;
@@ -234,7 +237,6 @@ public class Commander
    */
   private void defineReserv()
   {
-    System.err.println( "RESERVATION!" );
     String persName = s.next();
     String tourId = s.next();
     int sDate = s.nextInt();
@@ -253,7 +255,9 @@ public class Commander
         if( of != null )
         {
           Reservation r = new Reservation( p1, of );
-          if( p1.addReserv( r ) )
+          if( p1.getType() == 0 )
+            matchSolos( p, r );
+          else if( !p1.addReserv( r ) )
             System.err.println( "Successfully added reservation!" );
           else
             System.err.println( "Confliction error with current reservations!" );
@@ -268,7 +272,7 @@ public class Commander
   }
 
   /**
-   * This class is used to iterate through the collection
+   * This method is used to iterate through the collection
    *  of offerings and update each individual events'
    *  providers.
    */
@@ -277,5 +281,31 @@ public class Commander
      for( Offering o : os )
        o.addProvider( p );
    }
+   
+   /**
+    * This method iterates through collection
+    *  of defined people, if they are solos,
+    *  check for specified reservation, if
+    *  present check gender, if not check fit
+    *  level.
+    */ 
+   private void matchSolos( Person p, Reservation r )
+   {
+     for( Person pe : pers )
+     {
+       if( pe.getType() == 0 )
+       {
+         if( pe.hasReservation( r ) )
+         {
+           if( pe.getGender().equals( p.getGender() ) )
+           {
+             pe = pers.removeSolo( p );
+             Double d = new Double( pe, p );
+             pers.insertPerson( pe );
+           } 
+          }
+        }
+      }
+    }
 
 }

@@ -42,7 +42,7 @@ public class People
     {
       switch( p.getType() )
       {
-        case 0: tryMatchSolo( p ); break; 
+        case 0: others.put( p.getName(), p ); break; 
         case 1: others.put( p.getName(), p );   break;
         case 2: doubles.put( p.getName(), p ); break;
       }
@@ -52,6 +52,24 @@ public class People
       return( 1 );
   }
 
+  /**
+   * Method to find and remove a Solo
+   *  Person object from the collection
+   *  the removed object is returned.
+   */
+  public Person removeSolo( Person p )
+  {
+    if( p != null )
+      return( others.remove( p.getName() ) );
+    return( null );
+  }
+
+  /**
+   * Used to be used for the demonstration
+   *  but fatal logic flaw in matching
+   *  solos before any reservations are
+   *  made. DEPRECATED.
+   */
   private void tryMatchSolo( Person p )
   {
     // iterate through others collection
@@ -80,6 +98,7 @@ public class People
     }
     others.put( p.getName(), p );
   }
+
   /**
    * Method to search the specific collection
    * of that Person's type to see if they are
