@@ -41,6 +41,12 @@ public class Event{
         {
             Date eOpen = startTime.getTime();
             Date eClose = endTime.getTime();
+            GregorianCalendar g1 = new GregorianCalendar(2011, 11, 10, 
+            		eOpen.get(Calendar.HOUR_OF_DAY), eOpen.get(Calendar.MINUTE));
+            GregorianCalendar g2 = new GregorianCalendar(2011, 11, 10, 
+            		eClose.get(Calendar.HOUR_OF_DAY), eClose.get(Calendar.MINUTE));
+            eOpen = g1.getTime();
+            eClose = g2.getTime();
             GregorianCalendar open = provs.get(x).getOpenTime();
             GregorianCalendar close = provs.get(x).getClosingTime();
             Date o = open.getTime();
@@ -49,6 +55,7 @@ public class Event{
             {
                 if(provs.get(x).getService().equals(serv))
                 {
+                	//System.err.println("Event Location: " + location + " Provider Location: " + provs.get(x).getLocation());
                 	if(provs.get(x).getLocation().equals(location))
                 	{
                 		boolean done = false;
@@ -71,48 +78,53 @@ public class Event{
     //Updates the providers being used based on the current capacity.
     public void updateProviders(int curCap, int numDoubles)
     {
-	usedProviders.clear();
-	hasProvider = false;
-	Providers p = availableProviders;
-	if(p.size() > 0)
-	{
-		System.err.println("Available Providers");
-	    if(p.get(0).getCapacity() > curCap)
-		{
-	    	hasProvider = true;
-	    	usedProviders.add(p.get(0));
-		}
-	    else{
-	    	for(int x = 1; x < availableProviders.size(); x++)
-	    	{
-	    		int totalCap = 0;
-	    		for(int y = 0; y <= x; y++)
-	    		{
-	    			totalCap += p.get(y).getCapacity();
-	    		}
-	    		if(totalCap > curCap)
-	    		{
-	    			for(int y = 0; y <= x; y++)
-	    			{	
-	    				int cap = p.get(y).getCapacity();
-	    				cap = cap/2;
-	    				while(cap >0)
-	    				{
-	    					numDoubles--;
-	    					cap--;
-	    				}
-	    				usedProviders.add(p.get(y));
-	    			}
-	    			if(numDoubles == 0)
-	    				hasProvider = true;
-	    			else usedProviders.clear();	
+    	usedProviders.clear();
+    	hasProvider = false;
+    	Providers p = availableProviders;
+    	if(p.size() > 0)
+    	{
+    		if(p.get(0).getCapacity() > curCap)
+    		{
+    			hasProvider = true;
+    			usedProviders.add(p.get(0));
+    		}
+    		else{
+    			for(int x = 1; x < availableProviders.size(); x++)
+    			{
+    				if(hasProvider == false)
+    				{
+    					int totalCap = 0;
+    					for(int y = 0; y <= x; y++)
+    					{
+    						totalCap += p.get(y).getCapacity();
+    					}
+    					if(totalCap > curCap)
+    					{
+    						for(int y = 0; y <= x; y++)
+    						{	
+    							int cap = p.get(y).getCapacity();
+    							cap = cap/2;
+    							while(cap > 0 && numDoubles > 0)
+    							{
+    								numDoubles--;
+    								cap--;
+    							}
+    							usedProviders.add(p.get(y));
+    						}
+    						if(numDoubles == 0)
+    							hasProvider = true;
+    						else usedProviders.clear();	
 
-	    		}
-	    	}	  
-	    } 
-	}
+    					}
+    				}
+    			}	  
+    		} 
+    	}
     }
 
+    //Returns the type of event.
+    public String getType() { return service; }
+    
     //Returns the name of the event.
     public String getName() { return name; }
 
@@ -128,7 +140,7 @@ public class Event{
     //Adds a provider to the collection of providers.
     public void addProvider(Provider p) 
     {
-	 Date eOpen = startTime.getTime();
+    	 Date eOpen = startTime.getTime();
          Date eClose = endTime.getTime();
          GregorianCalendar open = p.getOpenTime();
          GregorianCalendar close = p.getClosingTime();
@@ -137,21 +149,21 @@ public class Event{
          if(o.compareTo(eOpen) <= 0 && c.compareTo(eClose) >= 0)
          {
             if(p.getService().equals(service))
-	    {
-               boolean done = false;
-	       for(int y = 0; y < availableProviders.size(); y++)
-	       {
-		   if(availableProviders.get(y).getCapacity() < p.getCapacity())
-		   {
-		       availableProviders.add(y, p);
-		       done = true;
-                       break;
-		   }
-	       }
-	       if(done == false)
-		   availableProviders.add(p); 
+            {
+            	boolean done = false;
+            	for(int y = 0; y < availableProviders.size(); y++)
+            	{
+            		if(availableProviders.get(y).getCapacity() < p.getCapacity())
+            		{
+            			availableProviders.add(y, p);
+            			done = true;
+            			break;
+            		}
+            	}
+            	if(done == false)
+            		availableProviders.add(p); 
             }
-	 }
+         }
           
     }
 

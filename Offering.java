@@ -141,7 +141,10 @@ public class Offering{
          boolean hasProviders = true;
          for( int i = 0; i < tour.getEvents().size(); i++ ){
         	 if( !tour.getEvents().get(i).hasProvider() )
-        		 hasProviders = false;
+        	 {
+        		    //System.err.println(tour.getEvents().get(i).toString());
+        		 	hasProviders = false;
+        	 }
          }
          if( hasProviders )
         	 takeOffHold();
@@ -155,6 +158,17 @@ public class Offering{
    //add possible provider to all events
    public void addProvider( Provider prov ){
 	   tour.getEvents().addProvider( prov );
+	   boolean stillHeld = false;
+	   for(int x = 0; x < tour.getEvents().size(); x++)
+	   {   
+		   
+		   if(tour.getEvents().get(x).hasProvider() == false)
+		   {
+			   System.err.println(tour.getEvents().get(x).toString());			   
+			   stillHeld = true;
+		   }
+	   }
+	   onHold = stillHeld;
    }
    
    //--------------------changeSlots(int)------------
